@@ -1,20 +1,33 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Hello MesplansController!</title>
+{% block contenu %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+      <center>
+        <h2>
+          Mes plans
+        </h2>
+      </center>
+      <hr>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/kevol/Dropbox/IUT/2ème année/Projet tutoré/Homecare/src/Controller/MesplansController.php'|file_link(0) }}">src/Controller/MesplansController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/kevol/Dropbox/IUT/2ème année/Projet tutoré/Homecare/templates/mesplans/index.html.twig'|file_link(0) }}">templates/mesplans/index.html.twig</a></code></li>
-    </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <center>
+        <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher..." />
+      </center>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
 </div>
 {% endblock %}

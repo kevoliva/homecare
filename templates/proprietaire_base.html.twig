@@ -59,7 +59,7 @@
       <div class="header-mobile__bar">
         <div class="container-fluid">
           <div class="header-mobile-inner">
-            <a class="logo" href="">
+            <a class="logo" href="{{path('homecare')}}">
               <img src="images/icon/PetitLogoHomecareTexte.png" alt="Homecare" />
             </a>
             <button class="hamburger hamburger--slider" type="button">
@@ -102,7 +102,7 @@
               <!-- MENU SIDEBAR-->
               <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
-                  <a href="#">
+                  <a href="{{path('homecare')}}">
                     <img src="images/icon/PetitLogoHomecareTexte.png" alt="Homecare" />
                   </a>
                 </div>
@@ -137,7 +137,7 @@
                         {% endblock %}
 
                         <!-- PAGE CONTAINER-->
-                        <div class="page-container">
+                        <div class="page-container" style="background:#F8F8F8">
                           {% block header %}
                           <!-- HEADER DESKTOP-->
 
