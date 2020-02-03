@@ -26,25 +26,25 @@
   <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
 
   <!-- Fontfaces CSS-->
-  <link href="css/font-face.css" rel="stylesheet" media="all">
-  <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-  <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-  <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+  <link href="{{asset('/css/font-face.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
 
   <!-- Bootstrap CSS-->
   <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
   <!-- Vendor CSS-->
-  <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-  <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-  <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-  <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-  <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
 
   <!-- Main CSS-->
-  <link href="css/theme.css" rel="stylesheet" media="all">
+  <link href="{{asset('css/theme.css')}}" rel="stylesheet" media="all">
 
 {% endblock %}
 
@@ -60,7 +60,7 @@
         <div class="container-fluid">
           <div class="header-mobile-inner">
             <a class="logo" href="{{path('homecare')}}">
-              <img src="images/icon/PetitLogoHomecareTexte.png" alt="Homecare" />
+              <img src="{{asset('images/icon/PetitLogoHomecareTexte.png')}}" alt="Homecare" />
             </a>
             <button class="hamburger hamburger--slider" type="button">
               <span class="hamburger-box">
@@ -75,23 +75,23 @@
           <ul class="navbar-mobile__list list-unstyled">
             <li>
               <a href="{{path('mesplans')}}">
-                <i><img src="images/icon/plan.ico"/></i>Mes plans</a>
+                <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Mes plans</a>
               </li>
               <li>
                 <a href="{{path('mesfactures')}}">
-                  <i><img src="images/icon/facture.ico"/></i>Mes factures</a>
+                  <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                 </li>
                 <li>
                   <a href="{{path('mesinterventions')}}">
-                    <i><img src="images/icon/intervention.ico"/></i>Mes interventions</a>
+                    <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                   </li>
                   <li>
                     <a href="{{path('mesalertes')}}">
-                      <i><img src="images/icon/alerte.ico"/></i>Mes alertes</a>
+                      <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                     </li>
                     <li>
                       <a href="{{path('mesautorisations')}}">
-                        <i><img src="images/icon/autorisation.ico"/></i>Mes autorisations</a>
+                        <i><img src="{{asset('images/icon/autorisation.ico')}}"/></i>Mes autorisations</a>
                       </li>
                     </ul>
                   </div>
@@ -103,7 +103,7 @@
               <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
                   <a href="{{path('homecare')}}">
-                    <img src="images/icon/PetitLogoHomecareTexte.png" alt="Homecare" />
+                    <img src="{{asset('images/icon/PetitLogoHomecareTexte.png')}}" alt="Homecare" />
                   </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
@@ -112,23 +112,23 @@
                       <ul class="list-unstyled navbar__list">
                         <li>
                           <a href="{{path('mesplans')}}">
-                            <i><img src="images/icon/plan.ico"/></i>Mes plans</a>
+                            <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Mes plans</a>
                           </li>
                           <li>
                             <a href="{{path('mesfactures')}}">
-                              <i><img src="images/icon/facture.ico"/></i>Mes factures</a>
+                              <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                             </li>
                             <li>
                               <a href="{{path('mesinterventions')}}">
-                                <i><img src="images/icon/intervention.ico"/></i>Mes interventions</a>
+                                <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                               </li>
                               <li>
                                 <a href="{{path('mesalertes')}}">
-                                  <i><img src="images/icon/alerte.ico"/></i>Mes alertes</a>
+                                  <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                                 </li>
                                 <li>
                                   <a href="{{path('mesautorisations')}}">
-                                    <i><img src="images/icon/autorisation.ico"/></i>Mes autorisations</a>
+                                    <i><img src="{{asset('images/icon/autorisation.ico')}}"/></i>Mes autorisations</a>
                                   </li>
                                 </ul>
                               </b>
@@ -189,7 +189,7 @@
                                     <div class="account-wrap">
                                       <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                          <img src="images/Benjouy.png" alt="Benjouy chauve" />
+                                          <img src="{{asset('images/Benjouy.png')}}" alt="Benjouy chauve" />
                                         </div>
                                         <div class="content">
                                           <a class="js-acc-btn" href="#">Benjamin Delsol</a>
@@ -198,7 +198,7 @@
                                           <div class="info clearfix">
                                             <div class="image">
                                               <a href="#">
-                                                <img src="images/Benjouy.png" alt="Benjouy chauve" />
+                                                <img src="{{asset('images/Benjouy.png')}}" alt="Benjouy chauve" />
                                               </a>
                                             </div>
                                             <div class="content">
@@ -258,29 +258,29 @@
                           <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 
                           <!-- Jquery JS-->
-                          <script src="vendor/jquery-3.2.1.min.js"></script>
+                          <script src="{{asset('vendor/jquery-3.2.1.min.js')}}"></script>
                           <!-- Bootstrap JS-->
-                          <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-                          <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+                          <script src="{{asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
+                          <script src="{{asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
                           <!-- Vendor JS       -->
-                          <script src="vendor/slick/slick.min.js">
+                          <script src="{{asset('vendor/slick/slick.min.js')}}">
                           </script>
-                          <script src="vendor/wow/wow.min.js"></script>
-                          <script src="vendor/animsition/animsition.min.js"></script>
-                          <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+                          <script src="{{asset('vendor/wow/wow.min.js')}}"></script>
+                          <script src="{{asset('vendor/animsition/animsition.min.js')}}"></script>
+                          <script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
                           </script>
-                          <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-                          <script src="vendor/counter-up/jquery.counterup.min.js">
+                          <script src="{{asset('vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+                          <script src="{{asset('vendor/counter-up/jquery.counterup.min.js')}}">
                           </script>
-                          <script src="vendor/circle-progress/circle-progress.min.js"></script>
-                          <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-                          <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-                          <script src="vendor/select2/select2.min.js">
+                          <script src="{{asset('vendor/circle-progress/circle-progress.min.js')}}"></script>
+                          <script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+                          <script src="{{asset('vendor/chartjs/Chart.bundle.min.js')}}"></script>
+                          <script src="{{asset('vendor/select2/select2.min.js')}}">
                           </script>
 
                           <!-- Main JS-->
 
-                          <script src="js/main.js"></script>
+                          <script src="{{asset('js/main.js')}}"></script>
                           {% block javascripts %}
                           {% endblock %}
                         </body>
