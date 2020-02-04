@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<title>Intervention index</title>
+
+{% block body %}
+    <h1>Intervention index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>TypeInterv</th>
+                <th>Observation</th>
+                <th>Remarque</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intervention in interventions %}
+            <tr>
+                <td>{{ intervention.id }}</td>
+                <td>{{ intervention.libelle }}</td>
+                <td>{{ intervention.typeInterv }}</td>
+                <td>{{ intervention.observation }}</td>
+                <td>{{ intervention.remarque }}</td>
+                <td>
+                    <a href="{{ path('intervention_show', {'id': intervention.id}) }}">show</a>
+                    <a href="{{ path('intervention_edit', {'id': intervention.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('intervention_new') }}">Create new</a>
+{% endblock %}
