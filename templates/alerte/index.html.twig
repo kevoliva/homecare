@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<title>Alerte index</title>
+
+{% block body %}
+    <h1>Alerte index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>LaDate</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alerte in alertes %}
+            <tr>
+                <td>{{ alerte.id }}</td>
+                <td>{{ alerte.libelle }}</td>
+                <td>{{ alerte.laDate ? alerte.laDate|date('Y-m-d') : '' }}</td>
+                <td>{{ alerte.description }}</td>
+                <td>
+                    <a href="{{ path('alerte_show', {'id': alerte.id}) }}">show</a>
+                    <a href="{{ path('alerte_edit', {'id': alerte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('alerte_new') }}">Create new</a>
+{% endblock %}
