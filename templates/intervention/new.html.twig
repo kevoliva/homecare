@@ -24,9 +24,12 @@ Mes interventions
 
     {{ include('intervention/_form.html.twig') }}
 
-    <a href="{{ path('intervention_index') }}">
-      <i class="demo-icon icon-undo" style="font-size:30px; color:#138496"></i>
-    </a>
+    <br>
+    <center>
+      <a href="{{ path('intervention_index') }}">
+        <button class="btn btn-danger btn-sm">Annuler</button>
+      </a>
+    </center>
 
   </div>
   <div class="col-md-3">
