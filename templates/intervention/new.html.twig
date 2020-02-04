@@ -1,11 +1,36 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>New Intervention</title>
+{% block title %}
+Mes interventions
+{% endblock %}
 
-{% block body %}
-    <h1>Create new Intervention</h1>
+{% block contenu %}
+<div class="row">
+  <div class="col-md-12">
+    <center>
+
+      <h2>Ajouter une nouveau intervention</h2>
+      <p>33 Rue de la Paix - 64600 Anglet</p>
+      <hr>
+
+    </center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
 
     {{ include('intervention/_form.html.twig') }}
 
-    <a href="{{ path('intervention_index') }}">back to list</a>
+    <a href="{{ path('intervention_index') }}">
+      <i class="demo-icon icon-undo" style="font-size:30px; color:#138496"></i>
+    </a>
+
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
+
 {% endblock %}
