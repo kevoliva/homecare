@@ -6,6 +6,7 @@ use App\Entity\Alerte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class AlerteType extends AbstractType
 {
@@ -13,7 +14,7 @@ class AlerteType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('laDate')
+            ->add('laDate', DateType::class)
             ->add('description')
             ->add('bien')
             ->add('intervention')
