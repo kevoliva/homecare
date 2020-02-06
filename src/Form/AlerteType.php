@@ -14,7 +14,7 @@ class AlerteType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('laDate', DateType::class)
+            ->add('laDate', DateType::class, ['widget' => 'single_text'])
             ->add('description')
             ->add('bien')
             ->add('intervention')

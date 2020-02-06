@@ -14,7 +14,7 @@ class PlanType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('laDate', DateType::class)
+            ->add('laDate', DateType::class, ['widget' => 'single_text'])
             ->add('cheminFic')
             ->add('bien')
         ;
