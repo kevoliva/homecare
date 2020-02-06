@@ -1,0 +1,83 @@
+{% extends 'professionnel_base.html.twig' %}
+
+{% block title %}
+Interventions
+{% endblock %}
+
+{% block contenu %}
+
+
+<div class="row">
+  <div class="col-md-12">
+
+    <center>
+      <h2>
+        Interventions
+      </h2>
+      <p>Philippe Dupont</p>
+      <p>33 Rue de la Paix - 64600 Anglet</p>
+    </center>
+    <hr>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <center>
+      <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Filtrer</button>
+    </center>
+  </div>
+
+  <div class="col-md-8">
+    <center>
+      <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher..." />
+    </center>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
+  </div>
+</div>
+</br>
+<div class="row">
+  <div class="col-md-12">
+
+    <!-- TABLEAU -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Libellé</th>
+          <th scope="col">Date de l'intervention</th>
+          <th scope="col"><i class="demo-icon icon-eye" style="color:#000000"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Recherche fuite salon</td>
+          <td>01/05/2015</td>
+          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+        </tr>
+        <tr>
+          <td>Réparation fuite salon</td>
+          <td>20/05/2015</td>
+          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+        </tr>
+        <tr>
+          <td>Mise en place carrelage SDB</td>
+          <td>19/10/2018</td>
+          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </br>
+
+  <a href="{{ path('pro_intervention_new') }}" style="float:right;">
+    <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
+  </a>
+
+</div>
+</div>
+
+{% endblock %}
