@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
     $bien->setAdresse($faker->streetAddress);
     $bien->setVille($faker->city);
     $bien->setCodePostal($faker->postcode);
-    $bien->setDateConstruct($faker->date($format = 'Y-m-d'), $max = 'now');
+    $bien->setDateConstruct($faker->date($format = 'd-m-Y'), $max = 'now');
     $bien->setSurface($faker->numberBetween($min = 50, $max = 200));
     $bien->setProprietaire($proprietaire);
 
@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
     for ($numPlan = 0 ; $numPlan < $nbPlansAGenerer ; $numPlan++){
       $plan = new Plan();
       $plan->setLibelle($faker->realText($maxNbChars = 30, $indexSize = 2));
-      $plan->setLaDate($faker->date($format = 'Y-m-d'), $max = 'now');
+      $plan->setLaDate($faker->date($format = 'd-m-Y'), $max = 'now');
       $plan->setCheminFic('/public/Proprietaire12/Bien5/Plans/neSaitPasEncore');
 
       // Relation Plan --> Bien
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
     for ($numFacture = 0 ; $numFacture < $nbFacturesAGenerer ; $numFacture++){
       $facture = new Facture();
       $facture->setLibelle($faker->realText($maxNbChars = 30, $indexSize = 2));
-      $facture->setLaDate($faker->date($format = 'Y-m-d'), $max = 'now');
+      $facture->setLaDate($faker->date($format = 'd-m-Y'), $max = 'now');
       $facture->setCheminFic('/public/Proprietaire12/Bien5/Factures/neSaitPasEncore');
 
       // Relation Facture --> Bien
@@ -95,7 +95,8 @@ class AppFixtures extends Fixture
 
     for ($numAlerte = 0 ; $numAlerte < $nbAlertesAGenerer ; $numAlerte++){
       $alerte = new Alerte();
-      $alerte->setLaDate($faker->date($format = 'Y-m-d'), $max = 'now');
+      $alerte->setLibelle($faker->realText($maxNbChars = 30, $indexSize = 2));
+      $alerte->setLaDate($faker->date($format = 'd-m-Y'), $max = 'now');
       $alerte->setDescription($faker->realText($maxNbChars = 250, $indexSize = 2));
 
       // Relation Facture --> Bien
@@ -115,7 +116,7 @@ class AppFixtures extends Fixture
 
     for ($numIntervention = 0 ; $numIntervention < $nbInterventionsAGenerer ; $numIntervention++){
       $intervention = new Intervention();
-      $intervention->setLieblle($faker->realText($maxNbChars = 30, $indexSize = 2));
+      $intervention->setLibelle($faker->realText($maxNbChars = 30, $indexSize = 2));
       $intervention->setTypeInterv($faker->realText($maxNbChars = 20, $indexSize = 2));
       $intervention->setObservation($faker->realText($maxNbChars = 150, $indexSize = 2));
       $intervention->setRemarque($faker->realText($maxNbChars = 150, $indexSize = 2));
