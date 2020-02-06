@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="au theme template">
+  <meta name="author" content="Kévin Oliva">
+  <meta name="keywords" content="au theme template">
+
+  <!-- Icone de la page -->
+  <link rel="shortcut icon" href="{{asset('images/icon/logo_homecare.ico')}}">
+
+  <title>
+    {% block title %}
+
+    Homecare
+
+    {% endblock %}
+  </title>
+
+  {% block stylesheets %}
+
+  <link rel="stylesheet" href="{{asset('/css/fontello.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+
+  <!-- Fontfaces CSS-->
+  <link href="{{asset('/css/font-face.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+  <!-- Vendor CSS-->
+  <link href="{{asset('vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+  <link href="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <link href="{{asset('css/theme.css')}}" rel="stylesheet" media="all">
+
+{% endblock %}
+
+</head>
+
+<!-- ...............................BODY................................. -->
+{% block body %}
+<body class="animsition">
+  <div class="page-wrapper" style="background:#F8F8F8">
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+      <div class="header-mobile__bar">
+        <div class="container-fluid">
+          <div class="header-mobile-inner">
+            <a class="logo" href="{{path('homecare')}}">
+              <img src="{{asset('images/icon/PetitLogoHomecareTexte.png')}}" alt="Homecare" />
+            </a>
+            <button class="hamburger hamburger--slider" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar-mobile">
+        <div class="container-fluid">
+          <ul class="navbar-mobile__list list-unstyled">
+            <li>
+              <a href="{{path('plan_index')}}">
+                <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Plans</a>
+              </li>
+              <li>
+                <a href="{{path('facture_index')}}">
+                  <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Factures</a>
+                </li>
+                <li>
+                  <a href="{{path('intervention_index')}}">
+                    <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Interventions</a>
+                  </li>
+                  <li>
+                    <a href="{{path('alerte_index')}}">
+                      <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Alertes</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+              <div class="logo">
+                <a href="{{path('homecare')}}">
+                  <img src="{{asset('images/icon/PetitLogoHomecareTexte.png')}}" alt="Homecare" />
+                </a>
+              </div>
+              <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                  <b>
+                    <ul class="list-unstyled navbar__list">
+                      <li>
+                        <a href="{{path('plan_index')}}">
+                          <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Plans</a>
+                        </li>
+                        <li>
+                          <a href="{{path('facture_index')}}">
+                            <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Factures</a>
+                          </li>
+                          <li>
+                            <a href="{{path('intervention_index')}}">
+                              <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Interventions</a>
+                            </li>
+                            <li>
+                              <a href="{{path('alerte_index')}}">
+                                <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Alertes</a>
+                              </li>
+                            </ul>
+                          </b>
+                        </nav>
+                      </div>
+                    </aside>
+                    <!-- END MENU SIDEBAR-->
+                    {% endblock %}
+
+                    <!-- PAGE CONTAINER-->
+                    <div class="page-container" style="background:#F8F8F8">
+                      {% block header %}
+                      <!-- HEADER DESKTOP-->
+
+                      <header class="header-desktop">
+                        <div class="section__content section__content--p30">
+                          <div class="container-fluid">
+                            <div class="header-wrap">
+                              <form class="form-header" action="" method="POST">
+                              </form>
+                              <div class="header-button">
+                                <div class="noti-wrap">
+                                  <div class="noti__item js-item-menu">
+                                    <i class="zmdi zmdi-notifications"></i>
+                                    <span class="quantity">2</span>
+                                    <div class="notifi-dropdown js-dropdown">
+                                      <div class="notifi__title">
+                                        <p>Vous avez 2 nouvelles notifications</p>
+                                      </div>
+                                      <div class="notifi__item">
+                                        <div class="bg-c2 img-cir img-40">
+                                          <i class="zmdi zmdi-account-box"></i>
+                                        </div>
+                                        <div class="content">
+                                          <p>Vous avez autorisé une entreprise</p>
+                                          <span class="date">12 avril 2018 10h00</span>
+                                        </div>
+                                      </div>
+                                      <div class="notifi__item">
+                                        <div class="bg-c3 img-cir img-40">
+                                          <i class="zmdi zmdi-file-text"></i>
+                                        </div>
+                                        <div class="content">
+                                          <p>Vous avez une nouvelle intervention</p>
+                                          <span class="date">12 avril 2018 10h50</span>
+                                        </div>
+                                      </div>
+                                      <div class="notifi__footer">
+                                        <a href="#">Toutes les notifications</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="account-wrap">
+                                  <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                      <img src="{{asset('images/icon/icon_user.png')}}" alt="Utilisateur" />
+                                    </div>
+                                    <div class="content">
+                                      <a class="js-acc-btn" href="#" >Kévin Oliva</a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                      <div class="info clearfix">
+                                        <div class="image">
+                                          <a href="#">
+                                            <img src="{{asset('images/icon/icon_user.png')}}" alt="Utilisateur" />
+                                          </a>
+                                        </div>
+                                        <div class="content">
+                                          <h5 class="name">
+                                            <a href="#">Kévin Oliva</a>
+                                          </h5>
+                                          <span class="email">kevinoliva.pro@gmail.com</span>
+                                        </div>
+                                      </div>
+                                      <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                          <a href="#">
+                                            <i class="zmdi zmdi-account"></i>Mon profil</a>
+                                          </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                          <a href="#">
+                                            <i class="zmdi zmdi-power"></i>Déconnexion</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </header>
+
+                          <!-- HEADER DESKTOP-->
+                          {% endblock %}
+
+                          <!-- CONTENU -->
+
+
+                          <!-- MAIN CONTENT-->
+                          <div class="main-content">
+                            <div class="section__content section__content--p30">
+                              <div class="container-fluid">
+
+                                {% block contenu %}
+                                {% endblock %}
+
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- END MAIN CONTENT-->
+                          <!-- END PAGE CONTAINER-->
+                        </div>
+                      </div>
+
+                      <!-- JAVASCRIPT -->
+
+
+                      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                      <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+
+                      <!-- Jquery JS-->
+                      <script src="{{asset('vendor/jquery-3.2.1.min.js')}}"></script>
+                      <!-- Bootstrap JS-->
+                      <script src="{{asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
+                      <script src="{{asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+                      <!-- Vendor JS       -->
+                      <script src="{{asset('vendor/slick/slick.min.js')}}">
+                      </script>
+                      <script src="{{asset('vendor/wow/wow.min.js')}}"></script>
+                      <script src="{{asset('vendor/animsition/animsition.min.js')}}"></script>
+                      <script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
+                      </script>
+                      <script src="{{asset('vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+                      <script src="{{asset('vendor/counter-up/jquery.counterup.min.js')}}">
+                      </script>
+                      <script src="{{asset('vendor/circle-progress/circle-progress.min.js')}}"></script>
+                      <script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+                      <script src="{{asset('vendor/chartjs/Chart.bundle.min.js')}}"></script>
+                      <script src="{{asset('vendor/select2/select2.min.js')}}">
+                      </script>
+
+                      <!-- Main JS-->
+
+                      <script src="{{asset('js/main.js')}}"></script>
+                      {% block javascripts %}
+                      {% endblock %}
+                    </body>
+                    </html>
