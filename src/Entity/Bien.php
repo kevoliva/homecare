@@ -34,7 +34,7 @@ class Bien
     private $codePostal;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
     private $dateConstruct;
 
@@ -124,12 +124,12 @@ class Bien
         return $this;
     }
 
-    public function getDateConstruct(): ?string
+    public function getDateConstruct(): ?\DateTimeInterface
     {
         return $this->dateConstruct;
     }
 
-    public function setDateConstruct(string $dateConstruct): self
+    public function setDateConstruct(\DateTimeInterface $dateConstruct): self
     {
         $this->dateConstruct = $dateConstruct;
 

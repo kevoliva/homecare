@@ -22,7 +22,7 @@ class Facture
     private $libelle;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
     private $laDate;
 
@@ -54,12 +54,12 @@ class Facture
         return $this;
     }
 
-    public function getLaDate(): ?string
+    public function getLaDate(): ?\DateTimeInterface
     {
         return $this->laDate;
     }
 
-    public function setLaDate(string $laDate): self
+    public function setLaDate(\DateTimeInterface $laDate): self
     {
         $this->laDate = $laDate;
 
