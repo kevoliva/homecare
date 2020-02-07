@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Autorisation;
+use App\Entity\Professionnel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,7 @@ class AutorisationType extends AbstractType
             ->add('intervention')
             ->add('alerte')
             ->add('professionnel')
-            ->add('bien')
+
         ;
     }
 

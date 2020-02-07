@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/my/autorisation")
+ * @Route("/my/idBien/autorisation")
  */
 class AutorisationController extends AbstractController
 {

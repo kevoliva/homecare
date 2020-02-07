@@ -48,15 +48,7 @@ class BienController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="bien_show", methods={"GET"})
-     */
-    public function show(Bien $bien): Response
-    {
-        return $this->render('bien/show.html.twig', [
-            'bien' => $bien,
-        ]);
-    }
+
 
     /**
      * @Route("/{id}/edit", name="bien_edit", methods={"GET","POST"})

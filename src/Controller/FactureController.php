@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/my/facture")
+ * @Route("/my/idBien/facture")
  */
 class FactureController extends AbstractController
 {
