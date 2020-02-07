@@ -19,7 +19,7 @@ class HomecareController extends AbstractController
   }
 
   /**
-  * @Route("/my/", name="homecare_my")
+  * @Route("/my/{id}", name="homecare_my")
   */
   public function indexMy()
   {
@@ -30,7 +30,7 @@ class HomecareController extends AbstractController
 
 
   /**
-  * @Route("/pro/", name="homecare_pro")
+  * @Route("/pro/{id}", name="homecare_pro")
   */
   public function indexPro()
   {

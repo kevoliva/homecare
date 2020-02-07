@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{asset('/css/fontello.css')}}">
+<link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+
+<title>Bien index</title>
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <center>
+        <h1 class="display-4">Liste des biens de Kévin Oliva</h1>
+        <br>
+        <hr>
+      </center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Adresse</th>
+            <th>Ville</th>
+            <th>CodePostal</th>
+            <th><i class="demo-icon icon-eye" style="color:#000000"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bien in biens %}
+          <tr>
+
+            <td>{{ bien.adresse }}</td>
+            <td>{{ bien.ville }}</td>
+            <td>{{ bien.codePostal }}</td>
+
+            <td>
+              <a href="{{ path('homecare_my', {'id': bien.id}) }}"><i class="demo-icon icon-eye" style="color:#999999"></i></a>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="7">no records found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="{{ path('bien_new') }}" style="float:right;">
+        <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
+      </a>
+
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
