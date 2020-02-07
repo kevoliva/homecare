@@ -1,0 +1,42 @@
+<head>
+  <title>Homecare</title>
+  <link rel="stylesheet" href="{{asset('/css/fontello.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <center>
+          <h1 class="display-2">Bienvenue sur Homecare</h1>
+          <h4>Êtes-vous propriétaire ou professionnel ?</h4>
+          <br>
+          <hr>
+        </center>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-4" style="margin-top:130px">
+        <center>
+          <a href="{{path('homecare_my')}}">
+            <button class = "btn btn-outline-info btn-lg btn-block">Je suis un propriétaire</button>
+          </a>
+        </center>
+      </div>
+      <div class="col-md-4" style="margin-top:130px">
+        <center>
+          <a href="{{path('homecare_pro')}}">
+            <button class = "btn btn-outline-danger btn-lg btn-block">Je suis un professionnel</button>
+          </a>
+        </center>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+    </div>
+  </div>
+
+</body>
