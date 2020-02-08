@@ -26,13 +26,13 @@ class HomecareController extends AbstractController
   public function indexMy($idBien)
   {
     // Récupérer le repository de l'entité Bien
-   $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
-   // Récupérer les biens enregistrés en BD
-   $bien = $repositoryBien->find($idBien);
-   // Envoyer les biens récupérés à la vue chargée de les afficher
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+    // Envoyer les biens récupérés à la vue chargée de les afficher
 
-   return $this->render('homecare/index.html.twig',
-   ['bien' => $bien]);
+    return $this->render('homecare/index.html.twig',
+    ['bien' => $bien]);
   }
 
 
