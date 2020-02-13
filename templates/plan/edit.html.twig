@@ -7,7 +7,7 @@
 
     {{ include('plan/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('plan_index') }}">back to list</a>
+    <a href="{{ path('plan_index', {idBien:bien.id}) }}">back to list</a>
 
     {{ include('plan/_delete_form.html.twig') }}
 {% endblock %}

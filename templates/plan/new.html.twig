@@ -25,7 +25,7 @@ Mes plans
     {{ include('plan/_form.html.twig') }}
     <br>
     <center>
-      <a href="{{ path('plan_index') }}">
+      <a href="{{ path('plan_index', {idBien:bien.id}) }}">
         <button class="btn btn-danger btn-sm">Annuler</button>
       </a>
     </center>

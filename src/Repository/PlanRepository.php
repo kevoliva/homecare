@@ -47,4 +47,15 @@ class PlanRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByIdBien($idBien)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

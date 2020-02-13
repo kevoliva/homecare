@@ -28,11 +28,11 @@ Mes plans
   </tbody>
 </table>
 
-<a href="{{ path('plan_index') }}">
+<a href="{{ path('plan_index', {idBien:bien.id}) }}">
   <i class="demo-icon icon-undo" style="font-size:30px; color:#138496"></i>
 </a>
 
-<a href="{{ path('plan_edit', {'id': plan.id}) }}">edit</a>
+<a href="{{ path('plan_edit', {'id': plan.id, idBien:bien.id}) }}">edit</a>
 
 {{ include('plan/_delete_form.html.twig') }}
 {% endblock %}
