@@ -47,4 +47,19 @@ class FactureRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+      * @return Stage[] Returns an array of Stage objects
+      */
+
+    public function findByIdBien($idBien)
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

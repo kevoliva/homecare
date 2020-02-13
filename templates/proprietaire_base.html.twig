@@ -78,7 +78,7 @@
                 <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Mes plans</a>
               </li>
               <li>
-                <a href="{{path('facture_index')}}">
+                <a href="{{path('facture_index', {idBien:bien.id})}}">
                   <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                 </li>
                 <li>
@@ -115,7 +115,7 @@
                             <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Mes plans</a>
                           </li>
                           <li>
-                            <a href="{{path('facture_index')}}">
+                            <a href="{{path('facture_index', {idBien:bien.id})}}">
                               <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                             </li>
                             <li>

@@ -33,6 +33,9 @@ class HomecareController extends AbstractController
 
     return $this->render('homecare/index.html.twig',
     ['bien' => $bien]);
+
+    return $this->render('proprietaire_base.html.twig',
+    ['bien' => $bien]);
   }
 
 
