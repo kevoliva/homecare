@@ -122,7 +122,7 @@ class PlanController extends AbstractController
 
         return $this->redirectToRoute('plan_index',
         ['bien' => $bien,
-          'idBien' => $idBien
+        'idBien' => $idBien
         ]);
     }
 }

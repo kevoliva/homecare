@@ -82,7 +82,7 @@
                   <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                 </li>
                 <li>
-                  <a href="{{path('intervention_index')}}">
+                  <a href="{{path('intervention_index', {idBien:bien.id})}}">
                     <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                   </li>
                   <li>
@@ -119,7 +119,7 @@
                               <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Mes factures</a>
                             </li>
                             <li>
-                              <a href="{{path('intervention_index')}}">
+                              <a href="{{path('intervention_index', {idBien:bien.id})}}">
                                 <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                               </li>
                               <li>

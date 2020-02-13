@@ -47,6 +47,11 @@ class Intervention
      */
     private $alerte;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $laDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,5 +131,17 @@ class Intervention
 
     public function __toString(){
       return $this->libelle;
+    }
+
+    public function getLaDate(): ?\DateTimeInterface
+    {
+        return $this->laDate;
+    }
+
+    public function setLaDate(\DateTimeInterface $laDate): self
+    {
+        $this->laDate = $laDate;
+
+        return $this;
     }
 }

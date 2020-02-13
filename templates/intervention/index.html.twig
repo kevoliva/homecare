@@ -6,7 +6,6 @@ Mes interventions
 
 {% block contenu %}
 
-
 <div class="row">
   <div class="col-md-12">
 
@@ -52,31 +51,26 @@ Mes interventions
         </tr>
       </thead>
       <tbody>
+        {% for interventionCourante in interventions %}
         <tr>
-          <td>Recherche fuite salon</td>
-          <td>01/05/2015</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+          <td>{{ interventionCourante.libelle }}</td>
+          <td>{{ interventionCourante.laDate|date('d/m/Y') }}</td>
+          <td>
+            <a href="{{path('intervention_show', {id:interventionCourante.id, idBien:bien.id})}}">
+              <i class="demo-icon icon-eye" style="color:#999999"></i>
+            </a>
+          </td>
         </tr>
-        <tr>
-          <td>Réparation fuite salon</td>
-          <td>20/05/2015</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-        <tr>
-          <td>Mise en place carrelage SDB</td>
-          <td>19/10/2018</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 
   </br>
 
-  <a href="{{ path('intervention_new') }}" style="float:right;">
+  <a href="{{ path('intervention_new', {idBien:bien.id}) }}" style="float:right;">
     <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
   </a>
 
 </div>
 </div>
-
 {% endblock %}

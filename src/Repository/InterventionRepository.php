@@ -47,4 +47,15 @@ class InterventionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByIdBien($idBien)
+   {
+       return $this->createQueryBuilder('i')
+           ->join('i.bien', 'b')
+           ->andWhere('b.id = :idBien')
+           ->setParameter('idBien', $idBien)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 }
