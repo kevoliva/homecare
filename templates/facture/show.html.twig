@@ -37,10 +37,17 @@ Mes factures
     </tr>
   </tbody>
 </table>
+<br>
 
-<a href="{{ path('facture_index', {idBien:bien.id}) }}">back to list</a>
+<a href="{{ path('facture_index', {idBien:bien.id}) }}">
+  <button class="btn btn-info btn-sm">Retour</button>
+</a>
 
-<a href="{{ path('facture_edit', {'id': facture.id, idBien:bien.id}) }}">edit</a>
+<a href="{{ path('facture_edit', {'id': facture.id, idBien:bien.id}) }}" style="float:right">
+<button class="btn btn-info btn-sm">Modifier</button>
+</a>
 
+<center>
 {{ include('facture/_delete_form.html.twig') }}
+</center>
 {% endblock %}
