@@ -5,7 +5,17 @@ Mes plans
 {% endblock %}
 
 {% block contenu %}
-<h1>Plan</h1>
+<center>
+  <h2>
+    {{ plan.libelle }}
+  </h2>
+  <p>
+    {{ plan.bien.getAdresse }}
+    {{ plan.bien.getCodePostal }}
+    {{ plan.bien.getVille }}
+  </p>
+</center>
+<hr>
 
 <table class="table">
   <tbody>

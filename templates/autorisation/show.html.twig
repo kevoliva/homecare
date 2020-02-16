@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Autorisation</title>
+{% block title %}
+Mes autorisations
+{% endblock %}
 
-{% block body %}
-    <h1>Autorisation</h1>
+{% block contenu %}
+<center>
+  <h2>
+    Autorisations pour l'entreprise {{ autorisation.professionnel.getNomEntrep }}
+  </h2>
+  <p>
+    {{ autorisation.bien.getAdresse }}
+    {{ autorisation.bien.getCodePostal }}
+    {{ autorisation.bien.getVille }}
+  </p>
+</center>
+<hr>
 
     <table class="table">
         <tbody>

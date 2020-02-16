@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Alerte</title>
+{% block title %}
+Mes alertes
+{% endblock %}
 
-{% block body %}
-    <h1>Alerte</h1>
+{% block contenu %}
+<center>
+  <h2>
+    {{ alerte.libelle }}
+  </h2>
+  <p>
+    {{ alerte.bien.getAdresse }}
+    {{ alerte.bien.getCodePostal }}
+    {{ alerte.bien.getVille }}
+  </p>
+</center>
+<hr>
 
     <table class="table">
         <tbody>
@@ -16,7 +28,7 @@
                 <td>{{ alerte.libelle }}</td>
             </tr>
             <tr>
-                <th>LaDate</th>
+                <th>Date d'alerte</th>
                 <td>{{ alerte.laDate ? alerte.laDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>

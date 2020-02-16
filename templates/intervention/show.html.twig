@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Intervention</title>
+{% block title %}
+Mes interventions
+{% endblock %}
 
-{% block body %}
-    <h1>Intervention</h1>
+{% block contenu %}
+<center>
+  <h2>
+    {{ intervention.libelle }}
+  </h2>
+  <p>
+    {{ intervention.bien.getAdresse }}
+    {{ intervention.bien.getCodePostal }}
+    {{ intervention.bien.getVille }}
+  </p>
+</center>
+<hr>
 
     <table class="table">
         <tbody>
@@ -16,15 +28,15 @@
                 <td>{{ intervention.libelle }}</td>
             </tr>
             <tr>
-                <th>TypeInterv</th>
+                <th>Type d'intervention</th>
                 <td>{{ intervention.typeInterv }}</td>
             </tr>
             <tr>
-                <th>Observation</th>
+                <th>Observations</th>
                 <td>{{ intervention.observation }}</td>
             </tr>
             <tr>
-                <th>Remarque</th>
+                <th>Remarques</th>
                 <td>{{ intervention.remarque }}</td>
             </tr>
         </tbody>
