@@ -22,7 +22,8 @@ class PlanType extends AbstractType
       ]
     ])
 
-    ->add('laDate', DateType::class, ['widget' => 'single_text'])
+    ->add('laDate', DateType::class, ['widget' => 'single_text',
+    'label' => 'Date du plan'])
 
     ->add('cheminFic', FileType::class, [
       'label' => 'Fichier à importer (PDF)',

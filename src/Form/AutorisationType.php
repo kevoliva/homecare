@@ -7,6 +7,8 @@ use App\Entity\Professionnel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class AutorisationType extends AbstractType
 {
@@ -14,10 +16,16 @@ class AutorisationType extends AbstractType
   {
     $builder
     ->add('plan')
+
     ->add('facture')
+
     ->add('intervention')
+
     ->add('alerte')
-    ->add('professionnel')
+
+    ->add('professionnel', EntityType::class, [
+      'class' => Professionnel::class, 'choice_label' => 'nomEntrep'
+    ])
     ;
   }
 

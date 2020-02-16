@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
@@ -23,7 +22,8 @@ class FactureType extends AbstractType
       ]
     ])
 
-    ->add('laDate', DateType::class, ['widget' => 'single_text'])
+    ->add('laDate', DateType::class, ['widget' => 'single_text',
+    'label' => 'Date de la facture'])
 
     ->add('cheminFic', FileType::class, [
       'label' => 'Fichier à importer (PDF)',
