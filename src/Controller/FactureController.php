@@ -8,6 +8,9 @@ use App\Repository\FactureRepository;
 use App\Entity\Bien;
 use App\Repository\BienRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,6 +51,30 @@ class FactureController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      // Récupérer données fichier PDF importé
+      $fichierFacturePDF = $form->get('cheminFic')->getData();
+
+      if ($fichierFacturePDF) {
+        $originalFilename = pathinfo($fichierFacturePDF->getClientOriginalName(), PATHINFO_FILENAME);
+        // this is needed to safely include the file name as part of the URL
+        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+        $newFilename = $safeFilename.'-'.uniqid().'.'.$fichierFacturePDF->guessExtension();
+
+        // Move the file to the directory where brochures are stored
+        try {
+          $fichierFacturePDF->move(
+            $this->getParameter('factures_directory'),
+            $newFilename
+          );
+        } catch (FileException $e) {
+          // ... handle exception if something happens during file upload
+        }
+
+        // updates the 'brochureFilename' property to store the PDF file name
+        // instead of its contents
+        $facture->setCheminFic($newFilename);
+      }
+
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($facture);
       $entityManager->flush();

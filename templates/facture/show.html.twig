@@ -32,8 +32,8 @@ Mes factures
       <td>{{ facture.laDate ? facture.laDate|date('Y-m-d') : '' }}</td>
     </tr>
     <tr>
-      <th>CheminFic</th>
-      <td>{{ facture.cheminFic }}</td>
+      <th>Facture</th>
+      <td><a href="{{ asset('uploads/factures/' ~ facture.cheminFic) }}">Voir la facture</a></td>
     </tr>
   </tbody>
 </table>
