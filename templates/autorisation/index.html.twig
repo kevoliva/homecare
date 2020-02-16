@@ -60,16 +60,16 @@ Mes autorisations
           <td>{{ autorisationCourante.professionnel.getNomEntrep }}</td>
           <td>
             {% if autorisationCourante.plan %}
-            Plans
+            <i><img src="{{asset('images/icon/plan.ico')}}"/></i>
             {% endif %}
             {% if autorisationCourante.facture %}
-            Factures
+            <i><img src="{{asset('images/icon/facture.ico')}}"/></i>
             {% endif %}
             {% if autorisationCourante.intervention %}
-            Interventions
+            <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>
             {% endif %}
             {% if autorisationCourante.alerte %}
-            Alertes
+            <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>
             {% endif %}
           </td>
           <td>
