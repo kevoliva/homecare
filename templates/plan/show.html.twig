@@ -32,8 +32,8 @@ Mes plans
       <td>{{ plan.laDate ? plan.laDate|date('Y-m-d') : '' }}</td>
     </tr>
     <tr>
-      <th>CheminFic</th>
-      <td>{{ plan.cheminFic }}</td>
+      <th>Plan</th>
+      <td><a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}">Ouvrir le plan</a></td>
     </tr>
   </tbody>
 </table>
