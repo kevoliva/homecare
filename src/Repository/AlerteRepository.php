@@ -47,4 +47,15 @@ class AlerteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByIdBien($idBien)
+   {
+       return $this->createQueryBuilder('a')
+           ->join('a.bien', 'b')
+           ->andWhere('b.id = :idBien')
+           ->setParameter('idBien', $idBien)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 }

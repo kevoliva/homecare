@@ -6,7 +6,6 @@ Mes alertes
 
 {% block contenu %}
 
-
 <div class="row">
   <div class="col-md-12">
 
@@ -34,7 +33,7 @@ Mes alertes
   </div>
 
   <div class="col-md-2">
-      <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
+    <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
   </div>
 </div>
 </br>
@@ -52,26 +51,26 @@ Mes alertes
         </tr>
       </thead>
       <tbody>
+        {% for alerteCourante in alertes %}
         <tr>
-          <td>Changement climatisation</td>
-          <td>16/05/2020</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+          <td>{{ alerteCourante.libelle }}</td>
+          <td>{{ alerteCourante.laDate|date('d/m/Y') }}</td>
+          <td>
+            <a href="{{path('alerte_show', {id:alerteCourante.id, idBien:bien.id})}}">
+              <i class="demo-icon icon-eye" style="color:#999999"></i>
+            </a>
+          </td>
         </tr>
-        <tr>
-          <td>Révision four</td>
-          <td>21/09/2020</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 
   </br>
 
-  <a href="{{ path('alerte_new') }}" style="float:right;">
+  <a href="{{ path('alerte_new', {idBien:bien.id}) }}" style="float:right;">
     <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
   </a>
 
 </div>
 </div>
-
 {% endblock %}

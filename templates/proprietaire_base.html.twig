@@ -86,7 +86,7 @@
                     <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                   </li>
                   <li>
-                    <a href="{{path('alerte_index')}}">
+                    <a href="{{path('alerte_index', {idBien:bien.id})}}">
                       <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                     </li>
                     <li>
@@ -123,7 +123,7 @@
                                 <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Mes interventions</a>
                               </li>
                               <li>
-                                <a href="{{path('alerte_index')}}">
+                                <a href="{{path('alerte_index', {idBien:bien.id})}}">
                                   <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                                 </li>
                                 <li>
