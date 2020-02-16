@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Edit Alerte</title>
+{% block title %}
+Mes alertes
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Alerte</h1>
-
-    {{ include('alerte/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('alerte_index', {idBien:bien.id}) }}">back to list</a>
-
-    {{ include('alerte/_delete_form.html.twig') }}
+{% block contenu %}
+<center>
+  <h1>Modifier l'alerte : {{ alerte.libelle }}</h1>
+</center>
+{{ include('alerte/_form.html.twig', {'button_label': 'Valider'}) }}
+<br>
+<center>
+{{ include('alerte/_delete_form.html.twig') }}
+</center>
 {% endblock %}

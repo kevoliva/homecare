@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Edit Intervention</title>
+{% block title %}
+Mes interventions
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Intervention</h1>
-
-    {{ include('intervention/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('intervention_index', {idBien:bien.id}) }}">back to list</a>
-
-    {{ include('intervention/_delete_form.html.twig') }}
+{% block contenu %}
+<center>
+  <h1>Modifier l'intervention : {{ intervention.libelle }}</h1>
+</center>
+{{ include('intervention/_form.html.twig', {'button_label': 'Valider'}) }}
+<br>
+<center>
+{{ include('intervention/_delete_form.html.twig') }}
+</center>
 {% endblock %}

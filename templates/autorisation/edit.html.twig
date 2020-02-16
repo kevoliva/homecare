@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Edit Autorisation</title>
+{% block title %}
+Mes autorisations
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Autorisation</h1>
-
-    {{ include('autorisation/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('autorisation_index', {idBien:bien.id}) }}">back to list</a>
-
-    {{ include('autorisation/_delete_form.html.twig') }}
+{% block contenu %}
+<center>
+  <h1>Modifier l'autorisation de l'entreprise : {{ autorisation.professionnel.getNomEntrep }}</h1>
+</center>
+{{ include('autorisation/_form.html.twig', {'button_label': 'Valider'}) }}
+<br>
+<center>
+{{ include('autorisation/_delete_form.html.twig') }}
+</center>
 {% endblock %}
