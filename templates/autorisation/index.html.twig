@@ -6,7 +6,6 @@ Mes autorisations
 
 {% block contenu %}
 
-
 <div class="row">
   <div class="col-md-12">
 
@@ -34,7 +33,7 @@ Mes autorisations
   </div>
 
   <div class="col-md-2">
-      <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
+    <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
   </div>
 </div>
 </br>
@@ -47,35 +46,44 @@ Mes autorisations
       <thead>
         <tr>
           <th scope="col">Nom d'entreprise</th>
-          <th scope="col">Autorisation</th>
+          <th scope="col">Autorisations</th>
           <th scope="col"><i class="demo-icon icon-eye" style="color:#000000"></i></th>
         </tr>
       </thead>
       <tbody>
+        {% for autorisationCourante in autorisations %}
         <tr>
-          <td>Total</td>
-          <td>Plan/Facture/Autorisation</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+          <td>{{ autorisationCourante.professionnel.getNomEntrep }}</td>
+          <td>
+            {% if autorisationCourante.plan %}
+            Plans
+            {% endif %}
+            {% if autorisationCourante.facture %}
+            Factures
+            {% endif %}
+            {% if autorisationCourante.intervention %}
+            Interventions
+            {% endif %}
+            {% if autorisationCourante.alerte %}
+            Alertes
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{path('autorisation_show', {id:autorisationCourante.id, idBien:bien.id})}}">
+              <i class="demo-icon icon-eye" style="color:#999999"></i>
+            </a>
+          </td>
         </tr>
-        <tr>
-          <td>Entreprise 2</td>
-          <td>Plan</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-        <tr>
-          <td>Entreprise 3</td>
-          <td>Plan/Intervention</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 
   </br>
 
-  <a href="{{ path('autorisation_new') }}" style="float:right;">
+  <a href="{{ path('autorisation_new', {idBien:bien.id}) }}" style="float:right;">
     <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
   </a>
-</div>
-</div>
 
+</div>
+</div>
 {% endblock %}

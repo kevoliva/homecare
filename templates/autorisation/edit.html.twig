@@ -7,7 +7,7 @@
 
     {{ include('autorisation/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('autorisation_index') }}">back to list</a>
+    <a href="{{ path('autorisation_index', {idBien:bien.id}) }}">back to list</a>
 
     {{ include('autorisation/_delete_form.html.twig') }}
 {% endblock %}

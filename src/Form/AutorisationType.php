@@ -18,6 +18,7 @@ class AutorisationType extends AbstractType
             ->add('intervention')
             ->add('alerte')
             ->add('professionnel')
+            ->add('bien')
 
         ;
     }

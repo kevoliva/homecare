@@ -90,7 +90,7 @@
                       <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                     </li>
                     <li>
-                      <a href="{{path('autorisation_index')}}">
+                      <a href="{{path('autorisation_index', {idBien:bien.id})}}">
                         <i><img src="{{asset('images/icon/autorisation.ico')}}"/></i>Mes autorisations</a>
                       </li>
                     </ul>
@@ -127,7 +127,7 @@
                                   <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Mes alertes</a>
                                 </li>
                                 <li>
-                                  <a href="{{path('autorisation_index')}}">
+                                  <a href="{{path('autorisation_index', {idBien:bien.id})}}">
                                     <i><img src="{{asset('images/icon/autorisation.ico')}}"/></i>Mes autorisations</a>
                                   </li>
                                 </ul>
