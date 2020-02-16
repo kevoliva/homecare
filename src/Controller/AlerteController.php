@@ -48,6 +48,8 @@ class AlerteController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+
+      $alerte->setBien($bien);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($alerte);
       $entityManager->flush();

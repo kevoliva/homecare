@@ -18,7 +18,6 @@ class InterventionType extends AbstractType
             ->add('observation')
             ->add('remarque')
             ->add('laDate', DateType::class, ['widget' => 'single_text'])
-            ->add('bien')
             ->add('alerte')
         ;
     }

@@ -75,6 +75,8 @@ class FactureController extends AbstractController
         $facture->setCheminFic($newFilename);
       }
 
+      $facture->setBien($bien);
+
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($facture);
       $entityManager->flush();

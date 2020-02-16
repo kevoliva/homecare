@@ -10,23 +10,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AutorisationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('plan')
-            ->add('facture')
-            ->add('intervention')
-            ->add('alerte')
-            ->add('professionnel')
-            ->add('bien')
+  public function buildForm(FormBuilderInterface $builder, array $options)
+  {
+    $builder
+    ->add('plan')
+    ->add('facture')
+    ->add('intervention')
+    ->add('alerte')
+    ->add('professionnel')
+    ;
+  }
 
-        ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Autorisation::class,
-        ]);
-    }
+  public function configureOptions(OptionsResolver $resolver)
+  {
+    $resolver->setDefaults([
+      'data_class' => Autorisation::class,
+    ]);
+  }
 }

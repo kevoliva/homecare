@@ -75,6 +75,8 @@ class PlanController extends AbstractController
         $plan->setCheminFic($newFilename);
       }
 
+      $plan->setBien($bien);
+
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($plan);
       $entityManager->flush();

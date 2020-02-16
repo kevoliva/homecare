@@ -33,7 +33,6 @@ class FactureType extends AbstractType
               ],
 
             ])
-            ->add('bien')
         ;
     }
 
