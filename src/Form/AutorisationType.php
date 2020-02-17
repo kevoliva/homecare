@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Autorisation;
 use App\Entity\Professionnel;
+use App\Repository\ProfessionnelRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
@@ -24,9 +26,14 @@ class AutorisationType extends AbstractType
     ->add('alerte')
 
     ->add('professionnel', EntityType::class, [
-      'class' => Professionnel::class, 'choice_label' => 'nomEntrep'
-    ])
-    ;
+      'class' => Professionnel::class,
+      'query_builder' => function(ProfessionnelRepository $repo) {
+        return $repo->entreprisesOrdreAlpha();
+      },
+      'attr' => [
+        'class' => 'js-example-basic-single',
+      ],
+    ]);
   }
 
   public function configureOptions(OptionsResolver $resolver)
