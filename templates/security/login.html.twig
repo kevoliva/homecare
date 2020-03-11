@@ -35,7 +35,7 @@
         <span class="login100-form-title p-b-41">
           Authentification
         </span>
-        <form class="login100-form validate-form p-b-33 p-t-5">
+        <form class="login100-form validate-form p-b-33 p-t-5" method="post">
 
           {% if error %}
           <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -57,10 +57,10 @@
             <span class="focus-input100" data-placeholder="&#xe80f;"></span>
           </div>
 
-          <div class="">
-            <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}">
-          </div>
+
+          <input type="hidden" name="_csrf_token"
+          value="{{ csrf_token('authenticate') }}">
+
           <br>
           <div class="checkbox mb-3">
             <center>

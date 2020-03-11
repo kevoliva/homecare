@@ -26,8 +26,12 @@ class AppFixtures extends Fixture
     ****************************************/
 
     $proprietaire = new Proprietaire();
-    $proprietaire->setNom($faker->lastName);
-    $proprietaire->setPrenom($faker->firstName($gender = 'male'));
+    $proprietaire->setNom('Oliva');
+    $proprietaire->setPrenom('Kévin');
+    $proprietaire->setEmail('olivakevin64@gmail.com');
+    $proprietaire->setRoles(['ROLE_PROPRIETAIRE']);
+    $proprietaire->setPassword('$2y$10$JVFeF9RXZ.t6tWGIcY2YyugD0U1tJecz6/PHoKlHcwdbgSKGkxMLC');
+
 
     $manager->persist($proprietaire);
 
