@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProprietaireRepository")
  */
-class Proprietaire
+class Proprietaire extends User
 {
     /**
      * @ORM\Id()
