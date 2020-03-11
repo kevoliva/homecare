@@ -85,8 +85,22 @@ class FormulaireLoginAuthenticator extends AbstractFormLoginAuthenticator
       return new RedirectResponse($targetPath);
     }
 
-    // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-    return new RedirectResponse($this->urlGenerator->generate('homecare'));
+    // Get list of roles for current user
+    $roles = $token->getRoles();
+    // Tranform this list in array
+    $rolesTab = array_map(function($role){
+      return $role->getRole();
+    }, $roles);
+
+    if (in_array('ROLE_PROPRIETAIRE', $rolesTab, true)){
+      // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+      return new RedirectResponse($this->urlGenerator->generate('homecare'));
+    }
+
+    if (in_array('ROLE_PROFESSIONNEL', $rolesTab, true)){
+      // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+      return new RedirectResponse($this->urlGenerator->generate('homecare_pro'));
+    }
   }
 
   protected function getLoginUrl()
