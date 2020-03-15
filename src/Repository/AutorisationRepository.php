@@ -58,4 +58,18 @@ class AutorisationRepository extends ServiceEntityRepository
           ->getResult()
       ;
   }
+
+  public function findByAutorisation($proConnecte, $bien)
+{
+    return $this->createQueryBuilder('a')
+        ->join('a.bien', 'b')
+        ->join('a.professionnel', 'p')
+        ->andWhere('a.professionnel = :proConnecte')
+        ->andWhere('a.bien = :bien')
+        ->setParameter('proConnecte', $proConnecte)
+        ->setParameter('bien', $bien)
+        ->getQuery()
+        ->getResult()
+    ;
+}
 }
