@@ -188,7 +188,7 @@
                                           <img src="{{asset('images/icon/icon_user.png')}}" alt="Utilisateur" />
                                         </div>
                                         <div class="content">
-                                          <a class="js-acc-btn" href="#" >Kévin Oliva</a>
+                                          <a class="js-acc-btn" href="#" >{{ app.user.prenom }} {{ app.user.nom }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                           <div class="info clearfix">
@@ -199,9 +199,9 @@
                                             </div>
                                             <div class="content">
                                               <h5 class="name">
-                                                <a href="#">Kévin Oliva</a>
+                                                <a href="#">{{ app.user.prenom }} {{ app.user.nom }}</a>
                                               </h5>
-                                              <span class="email">kevinoliva.pro@gmail.com</span>
+                                              <span class="email">{{ app.user.email }}</span>
                                             </div>
                                           </div>
                                           <div class="account-dropdown__body">
@@ -211,7 +211,7 @@
                                               </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                              <a href="#">
+                                              <a href="{{path('app_logout')}}">
                                                 <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                               </div>
                                             </div>
