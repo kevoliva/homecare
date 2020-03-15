@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Proprietaire;
+use App\Entity\Autorisation;
+use App\Entity\Professionnel;
+use App\Entity\Bien;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

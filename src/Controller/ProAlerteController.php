@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProAlerteController extends AbstractController
 {
     /**
-     * @Route("/pro/alerte", name="pro_alerte")
+     * @Route("/pro/alerte", name="pro_alerte_index")
      */
     public function index()
     {

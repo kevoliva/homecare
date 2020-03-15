@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 use App\Entity\Bien;
 
 class HomecareController extends AbstractController
@@ -40,12 +41,21 @@ class HomecareController extends AbstractController
 
 
   /**
-  * @Route("/pro", name="homecare_pro")
+  * @Route("/pro/{idBien}", name="homecare_pro")
   */
-  public function indexPro()
+  public function indexPro($idBien)
   {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+    // Envoyer les biens récupérés à la vue chargée de les afficher
+
     return $this->render('professionnel/homecare/index.html.twig', [
-      'controller_name' => 'HomecareController',
+      'bien' => $bien
     ]);
+
+    return $this->render('professionnel_base.html.twig',
+    ['bien' => $bien]);
   }
 }

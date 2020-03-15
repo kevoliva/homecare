@@ -94,12 +94,12 @@ class FormulaireLoginAuthenticator extends AbstractFormLoginAuthenticator
 
     if (in_array('ROLE_PROPRIETAIRE', $rolesTab, true)){
       // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-      return new RedirectResponse($this->urlGenerator->generate('homecare'));
+      return new RedirectResponse($this->urlGenerator->generate('bien_index'));
     }
 
     if (in_array('ROLE_PROFESSIONNEL', $rolesTab, true)){
       // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-      return new RedirectResponse($this->urlGenerator->generate('homecare_pro'));
+      return new RedirectResponse($this->urlGenerator->generate('pro_bien_index'));
     }
   }
 
