@@ -20,9 +20,18 @@ class HomecareController extends AbstractController
   */
   public function index()
   {
-    return $this->render('accueil.html.twig', [
-      'controller_name' => 'HomecareController',
-    ]);
+    if($this->isGranted('ROLE_PROPRIETAIRE'))
+    {
+      return $this->redirectToRoute('bien_index');
+    }
+    else if ($this->isGranted('ROLE_PROFESSIONNEL'))
+    {
+      return $this->redirectToRoute('pro_bien_index');
+    }
+    else
+    {
+      return $this->redirectToRoute('app_login');
+    }
   }
 
   /**

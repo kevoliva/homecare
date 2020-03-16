@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
-* @Route("/pro/plan")
+* @Route("/pro/{idBien}/plan")
 */
 class ProPlanController extends AbstractController
 {
