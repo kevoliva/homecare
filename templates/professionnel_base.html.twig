@@ -76,25 +76,25 @@
             {% for autorisation in autorisations %}
             {% if autorisation.plan %}
             <li>
-              <a href="{{path('pro_plan_index')}}">
+              <a href="{{path('pro_plan_index', {idBien:bien.id})}}">
                 <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Plans</a>
               </li>
               {% endif %}
               {% if autorisation.facture %}
               <li>
-                <a href="{{path('pro_facture_index')}}">
+                <a href="{{path('pro_facture_index', {idBien:bien.id})}}">
                   <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Factures</a>
                 </li>
                 {% endif %}
                 {% if autorisation.intervention %}
                 <li>
-                  <a href="{{path('pro_intervention_index')}}">
+                  <a href="{{path('pro_intervention_index', {idBien:bien.id})}}">
                     <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Interventions</a>
                   </li>
                   {% endif %}
                   {% if autorisation.alerte %}
                   <li>
-                    <a href="{{path('pro_alerte_index')}}">
+                    <a href="{{path('pro_alerte_index', {idBien:bien.id})}}">
                       <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Alertes</a>
                     </li>
                     {% endif %}
@@ -119,25 +119,25 @@
                       {% for autorisation in autorisations %}
                       {% if autorisation.plan %}
                       <li>
-                        <a href="{{path('pro_plan_index')}}">
+                        <a href="{{path('pro_plan_index', {idBien:bien.id})}}">
                           <i><img src="{{asset('images/icon/plan.ico')}}"/></i>Plans</a>
                         </li>
                         {% endif %}
                         {% if autorisation.facture %}
                         <li>
-                          <a href="{{path('pro_facture_index')}}">
+                          <a href="{{path('pro_facture_index', {idBien:bien.id})}}">
                             <i><img src="{{asset('images/icon/facture.ico')}}"/></i>Factures</a>
                           </li>
                           {% endif %}
                           {% if autorisation.intervention %}
                           <li>
-                            <a href="{{path('pro_intervention_index')}}">
+                            <a href="{{path('pro_intervention_index', {idBien:bien.id})}}">
                               <i><img src="{{asset('images/icon/intervention.ico')}}"/></i>Interventions</a>
                             </li>
                             {% endif %}
                             {% if autorisation.alerte %}
                             <li>
-                              <a href="{{path('pro_alerte_index')}}">
+                              <a href="{{path('pro_alerte_index', {idBien:bien.id})}}">
                                 <i><img src="{{asset('images/icon/alerte.ico')}}"/></i>Alertes</a>
                               </li>
                               {% endif %}

@@ -2,9 +2,11 @@
 
 {% block contenu %}
 <center>
+  {{bien.proprietaire.getPrenom}} {{bien.proprietaire.getNom}}
+  <hr>
   <h2>
     {{bien.adresse}}
   </h2>
-  <h4>{{bien.ville}} - {{bien.codePostal}}</h4>
+  {{bien.ville}} - {{bien.codePostal}}
 </center>
 {% endblock %}
