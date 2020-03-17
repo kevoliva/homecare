@@ -1,20 +1,76 @@
-<!DOCTYPE html>
+{% extends 'professionnel_base.html.twig' %}
 
-<title>Hello ProAlerteController!</title>
+{% block title %}
+Alertes
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block contenu %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="row">
+  <div class="col-md-12">
+    <center>
+      <h2>
+        Alertes
+      </h2>
+      <p>{{ bien.proprietaire.getPrenom }} {{ bien.proprietaire.getNom }}</p>
+      <p>{{ bien.adresse }} - {{ bien.codePostal }} {{ bien.ville }}</p>
+    </center>
+    <hr>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/kevol/Dropbox/IUT/2ème année/Projet tutoré/Homecare/src/Controller/ProAlerteController.php'|file_link(0) }}">src/Controller/ProAlerteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/kevol/Dropbox/IUT/2ème année/Projet tutoré/Homecare/templates/pro_alerte/index.html.twig'|file_link(0) }}">templates/pro_alerte/index.html.twig</a></code></li>
-    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <center>
+      <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Filtrer</button>
+    </center>
+  </div>
+
+  <div class="col-md-8">
+    <center>
+      <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher..." />
+    </center>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
+  </div>
+</div>
+</br>
+<div class="row">
+  <div class="col-md-12">
+
+    <!-- TABLEAU -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Libellé</th>
+          <th scope="col">Date de l'alerte</th>
+          <th scope="col"><i class="demo-icon icon-eye" style="color:#000000"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for alerteCourante in alertes %}
+        <tr>
+          <td>{{ alerteCourante.libelle }}</td>
+          <td>{{ alerteCourante.laDate|date('d/m/Y') }}</td>
+          <td>
+            <a href="{{path('alerte_show', {id:alerteCourante.id, idBien:bien.id})}}">
+              <i class="demo-icon icon-eye" style="color:#999999"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </br>
+
+  <a href="{{ path('alerte_new', {idBien:bien.id}) }}" style="float:right;">
+    <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
+  </a>
+
+</div>
 </div>
 {% endblock %}

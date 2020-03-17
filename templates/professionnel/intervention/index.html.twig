@@ -14,8 +14,8 @@ Interventions
       <h2>
         Interventions
       </h2>
-      <p>Philippe Dupont</p>
-      <p>33 Rue de la Paix - 64600 Anglet</p>
+      <p>{{ bien.proprietaire.getPrenom }} {{ bien.proprietaire.getNom }}</p>
+      <p>{{ bien.adresse }} - {{ bien.codePostal }} {{ bien.ville }}</p>
     </center>
     <hr>
 
@@ -52,28 +52,22 @@ Interventions
           <th scope="col"><i class="demo-icon icon-eye" style="color:#000000"></i></th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Recherche fuite salon</td>
-          <td>01/05/2015</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-        <tr>
-          <td>Réparation fuite salon</td>
-          <td>20/05/2015</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-        <tr>
-          <td>Mise en place carrelage SDB</td>
-          <td>19/10/2018</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-      </tbody>
+      {% for interventionCourante in interventions %}
+      <tr>
+        <td>{{ interventionCourante.libelle }}</td>
+        <td>{{ interventionCourante.laDate|date('d/m/Y') }}</td>
+        <td>
+          <a href="{{path('intervention_show', {id:interventionCourante.id, idBien:bien.id})}}">
+            <i class="demo-icon icon-eye" style="color:#999999"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
     </table>
 
   </br>
 
-  <a href="{{ path('pro_intervention_new') }}" style="float:right;">
+  <a href="{{ path('pro_intervention_new', {idBien:bien.id}) }}" style="float:right;">
     <i class="demo-icon icon-plus-circled" style="font-size:35px; color:#138496"></i>
   </a>
 
