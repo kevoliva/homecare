@@ -38,9 +38,15 @@ class AppFixtures extends Fixture
     $professionnel->setRoles(['ROLE_PROFESSIONNEL']);
     $professionnel->setPassword('$2y$10$JVFeF9RXZ.t6tWGIcY2YyugD0U1tJecz6/PHoKlHcwdbgSKGkxMLC');
 
+    $professionnel2 = new Professionnel();
+    $professionnel2->setNomEntrep('EDF');
+    $professionnel2->setEmail('edf@gmail.com');
+    $professionnel2->setRoles(['ROLE_PROFESSIONNEL']);
+    $professionnel2->setPassword('$2y$10$JVFeF9RXZ.t6tWGIcY2YyugD0U1tJecz6/PHoKlHcwdbgSKGkxMLC');
 
     $manager->persist($proprietaire);
     $manager->persist($professionnel);
+    $manager->persist($professionnel2);
 
     /***************************************
     *** CREATION DU BIEN ASSOCIE ***

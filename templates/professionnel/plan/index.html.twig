@@ -13,8 +13,8 @@ Plans
       <h2>
         Plans
       </h2>
-      <p>Philippe Dupont</p>
-      <p>33 Rue de la Paix - 64600 Anglet</p>
+      <p>{{ bien.proprietaire.getPrenom }} {{ bien.proprietaire.getNom }}</p>
+      <p>{{ bien.adresse }} - {{ bien.codePostal }} {{ bien.ville }}</p>
     </center>
     <hr>
 
@@ -52,21 +52,17 @@ Plans
         </tr>
       </thead>
       <tbody>
+        {% for planCourant in plans %}
         <tr>
-          <td>Cuisine</td>
-          <td>12/03/2008</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
+          <td>{{ planCourant.libelle }}</td>
+          <td>{{ planCourant.laDate|date('d/m/Y') }}</td>
+          <td>
+            <a href="{{path('plan_show', {id:planCourant.id, idBien:bien.id})}}">
+              <i class="demo-icon icon-eye" style="color:#999999"></i>
+            </a>
+          </td>
         </tr>
-        <tr>
-          <td>Général</td>
-          <td>07/02/2008</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
-        <tr>
-          <td>Salle de bain</td>
-          <td>28/03/2008</td>
-          <td><i class="demo-icon icon-eye" style="color:#999999"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 

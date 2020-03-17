@@ -49,7 +49,10 @@ return $this->createQueryBuilder('p')
 */
 
 public function entreprisesOrdreAlpha(){
-  return $this->createQueryBuilder('professionnel')
-  ->orderBy('professionnel.nomEntrep', 'ASC');
+  return $this->createQueryBuilder('p')
+  ->join('p.autorisations', 'a')
+  ->join('a.bien', 'b')
+  ->orderBy('p.nomEntrep', 'ASC');
 }
+
 }
