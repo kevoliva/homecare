@@ -1,7 +1,7 @@
-{% extends 'proprietaire_base.html.twig' %}
+{% extends 'professionnel_base.html.twig' %}
 
 {% block title %}
-Mes plans
+Plans
 {% endblock %}
 
 {% block contenu %}
@@ -18,21 +18,14 @@ Mes plans
       <td>{{ plan.libelle }}</td>
     </tr>
     <tr>
-      <th>LaDate</th>
+      <th>Date</th>
       <td>{{ plan.laDate ? plan.laDate|date('Y-m-d') : '' }}</td>
     </tr>
     <tr>
-      <th>CheminFic</th>
-      <td>{{ plan.cheminFic }}</td>
+      <th>Plan</th>
+      <td><a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}">Voir le plan</a></td>
     </tr>
   </tbody>
 </table>
 
-<a href="{{ path('plan_index') }}">
-  <i class="demo-icon icon-undo" style="font-size:30px; color:#138496"></i>
-</a>
-
-<a href="{{ path('plan_edit', {'id': plan.id}) }}">edit</a>
-
-{{ include('plan/_delete_form.html.twig') }}
 {% endblock %}

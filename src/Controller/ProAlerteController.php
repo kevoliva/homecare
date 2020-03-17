@@ -13,10 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+* @Route("/pro/{idBien}/alerte")
+*/
 class ProAlerteController extends AbstractController
 {
     /**
-     * @Route("/pro/{idBien}/alerte", name="pro_alerte_index")
+     * @Route("/", name="pro_alerte_index")
      */
     public function index(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
     {
@@ -33,7 +36,7 @@ class ProAlerteController extends AbstractController
     }
 
     /**
-    * @Route("/{id}", name="alerte_show", methods={"GET"})
+    * @Route("/{id}", name="pro_alerte_show", methods={"GET"})
     */
     public function show(Alerte $alerte, $idBien): Response
     {

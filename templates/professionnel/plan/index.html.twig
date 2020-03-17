@@ -57,7 +57,7 @@ Plans
           <td>{{ planCourant.libelle }}</td>
           <td>{{ planCourant.laDate|date('d/m/Y') }}</td>
           <td>
-            <a href="{{path('plan_show', {id:planCourant.id, idBien:bien.id})}}">
+            <a href="{{path('pro_plan_show', {id:planCourant.id, idBien:bien.id})}}">
               <i class="demo-icon icon-eye" style="color:#999999"></i>
             </a>
           </td>

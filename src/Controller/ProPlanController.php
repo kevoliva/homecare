@@ -35,15 +35,20 @@ class ProPlanController extends AbstractController
     ]);
   }
 
-
-
   /**
   * @Route("/{id}", name="pro_plan_show", methods={"GET"})
   */
-  public function show(Plan $plan): Response
+  public function show(Plan $plan, AutorisationRepository $autorisationRepository, $idBien): Response
   {
-    return $this->render('plan/show.html.twig', [
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    return $this->render('professionnel/plan/show.html.twig', [
       'plan' => $plan,
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
     ]);
   }
 }
