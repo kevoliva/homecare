@@ -44,11 +44,13 @@ class AutorisationController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $autorisation = new Autorisation();
+    $autorisation->setBien($bien);
     $form = $this->createForm(AutorisationType::class, $autorisation);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
 
+      // A enlever ?
       $autorisation->setBien($bien);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($autorisation);

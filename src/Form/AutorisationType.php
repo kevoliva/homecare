@@ -27,8 +27,10 @@ class AutorisationType extends AbstractType
 
     ->add('professionnel', EntityType::class, [
       'class' => Professionnel::class,
-      'query_builder' => function(ProfessionnelRepository $repo) {
-        return $repo->entreprisesOrdreAlpha();
+      'query_builder' => function(ProfessionnelRepository $repo) use ($options) {
+
+        $id = $options['data']->getBien()->getId();
+        return $repo->entreprisesOrdreAlpha($id);
       },
       'attr' => [
         'class' => 'js-example-basic-single',

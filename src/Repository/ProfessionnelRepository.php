@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Professionnel;
+use App\Entity\Bien;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -48,11 +49,16 @@ return $this->createQueryBuilder('p')
 }
 */
 
-public function entreprisesOrdreAlpha(){
-  return $this->createQueryBuilder('p')
-  ->join('p.autorisations', 'a')
-  ->join('a.bien', 'b')
-  ->orderBy('p.nomEntrep', 'ASC');
+public function entreprisesOrdreAlpha($id){
+  $resultats = $this -> createQueryBuilder ('p')
+  -> leftJoin ('p.autorisations', 'a')
+  // -> leftJoin ('a.bien', 'b')
+  -> andWhere ('a.bien != :bien')
+  -> orWhere('a.bien is NULL')
+  -> setParameter ('bien', $id)
+  -> orderBy ('p.nomEntrep', 'ASC');
+  dump($resultats);
+  return $resultats;
 }
 
 }
