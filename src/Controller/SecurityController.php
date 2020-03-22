@@ -94,33 +94,33 @@ class SecurityController extends AbstractController
   public function inscriptionProfessionnel(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
   {
     //Créer un utilisateur vide
-    $utilisateur = new User();
+    $professionnel = new Professionnel();
 
     // Création du formulaire permettant de saisir un utilisateur
-    $formulaireUtilisateur = $this->createForm(UserType::class, $utilisateur);
+    $formulaireProfessionnel = $this->createForm(ProfessionnelType::class, $professionnel);
 
     /* On demande au formulaire d'analyser la dernière requête Http. Si le tableau POST contenu
     dans cette requête contient des variables nom, prenom, etc. alors la méthode handleRequest()
     récupère les valeurs de ces variables et les affecte à l'objet $utilisateur*/
-    $formulaireUtilisateur->handleRequest($request);
+    $formulaireProfessionnel->handleRequest($request);
 
-    if ($formulaireUtilisateur->isSubmitted() && $formulaireUtilisateur->isValid())
+    if ($formulaireProfessionnel->isSubmitted() && $formulaireProfessionnel->isValid())
     {
-      // $proprietaire->setRoles(['ROLE_PROPRIETAIRE']);
-      //
-      // //Encoder le mot de passe de l'utilisateur
-      // $encodagePassword = $encoder->encodePassword($proprietaire, $proprietaire->getPassword());
-      // $proprietaire->setPassword($encodagePassword);
-      //
-      // // Enregistrer l'utilisateur en base de données
-      // $manager->persist($proprietaire);
-      // $manager->flush();
+      $professionnel->setRoles(['ROLE_PROFESSIONNEL']);
+
+      //Encoder le mot de passe de l'utilisateur
+      $encodagePassword = $encoder->encodePassword($professionnel, $professionnel->getPassword());
+      $professionnel->setPassword($encodagePassword);
+
+      // Enregistrer l'utilisateur en base de données
+      $manager->persist($professionnel);
+      $manager->flush();
 
       // Rediriger l'utilisateur vers la page d'accueil
-      return $this->redirectToRoute('openclassdut_accueil');
+      return $this->redirectToRoute('app_login');
     }
 
     // Afficher la page présentant le formulaire d'inscription
-    return $this->render('security/inscription.html.twig',['vueFormulaire' => $formulaireUtilisateur->createView()]);
+    return $this->render('security/inscriptionProfessionnel.html.twig',['vueFormulaire' => $formulaireProfessionnel->createView()]);
   }
 }

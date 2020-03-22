@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Qui êtes-vous ?</title>
+  <title>Inscription professionnel</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -33,26 +33,33 @@
     <div class="container-login100" style="background-image: url('images/batiment.jpg');">
       <div class="wrap-login100 p-t-30 p-b-50">
         <span class="login100-form-title p-b-41">
-          Qui êtes-vous ?
+          Inscription d'un professionnel
         </span>
-        <div style="background:#FFFFFF; border-radius:10px">
+        <div style="background:#FFFFFF; border-radius:15px" class="container-fluid">
           <br>
-          <center>
-            <a href="{{path('app_inscription_proprietaire')}}">
-              <button class="login100-form-btn" style="background: -webkit-linear-gradient(left, #138496, #005060);">
-                Je suis un propriétaire
-              </button>
-            </a>
-            <br><br>
-            <a href="{{path('app_inscription_professionnel')}}">
-              <button class="login100-form-btn" style="background: -webkit-linear-gradient(left, #F56F61, #E33321);">
-                Je suis un professionnel
-              </button>
-            </a>
-          </center>
-          <br>
-        </div>
 
+            {{ form_start(vueFormulaire) }}
+
+            <label>Nom de l'entreprise</label>
+            {{ form_errors(vueFormulaire.nomEntrep) }}
+            {{ form_widget(vueFormulaire.nomEntrep) }}
+
+            <br>
+            <label>Adresse email</label>
+            {{ form_errors(vueFormulaire.email) }}
+            {{ form_widget(vueFormulaire.email) }}
+            <br>
+            {{ form_errors(vueFormulaire.password) }}
+            {{ form_widget(vueFormulaire.password) }}
+
+            <br>
+
+            <center>
+              <button type="submit" class="btn btn-dark">S'inscrire</button>
+            </center>
+            <br>
+            {{ form_end(vueFormulaire) }}
+        </div>
       </div>
     </div>
   </div>
