@@ -60,4 +60,14 @@ public function getBiensClients($proConnecte)
   ->getQuery()
   ->getResult();
 }
+
+public function getBiensProprietaire($proprietaireConnecte)
+{
+  return $this->createQueryBuilder('b')
+  ->join('b.proprietaire', 'p')
+  ->andWhere('b.proprietaire = :proprietaireConnecte')
+  ->setParameter('proprietaireConnecte', $proprietaireConnecte)
+  ->getQuery()
+  ->getResult();
+}
 }
