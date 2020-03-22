@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
-class AutorisationType extends AbstractType
+class EditAutorisationType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -25,18 +25,7 @@ class AutorisationType extends AbstractType
 
     ->add('alerte')
 
-      ->add('professionnel', EntityType::class, [
-        'class' => Professionnel::class,
-        'query_builder' => function(ProfessionnelRepository $repo) use ($options) {
-
-          $id = $options['data']->getBien()->getId();
-          return $repo->entreprisesOrdreAlpha($id);
-        },
-        'attr' => [
-          'class' => 'js-example-basic-single',
-        ],
-      ])
-      ;
+    ;
   }
 
   public function configureOptions(OptionsResolver $resolver)

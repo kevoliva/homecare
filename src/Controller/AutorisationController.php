@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Autorisation;
 use App\Form\AutorisationType;
+use App\Form\EditAutorisationType;
 use App\Repository\AutorisationRepository;
 use App\Entity\Bien;
 use App\Repository\BienRepository;
@@ -62,7 +63,7 @@ class AutorisationController extends AbstractController
     return $this->render('autorisation/new.html.twig', [
       'autorisation' => $autorisation,
       'bien' => $bien,
-      'form' => $form->createView(),
+      'form' => $form->createView()
     ]);
   }
 
@@ -92,7 +93,7 @@ class AutorisationController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
-    $form = $this->createForm(AutorisationType::class, $autorisation);
+    $form = $this->createForm(EditAutorisationType::class, $autorisation);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
@@ -104,7 +105,7 @@ class AutorisationController extends AbstractController
     return $this->render('autorisation/edit.html.twig', [
       'autorisation' => $autorisation,
       'bien' => $bien,
-      'form' => $form->createView(),
+      'form' => $form->createView()
     ]);
   }
 
