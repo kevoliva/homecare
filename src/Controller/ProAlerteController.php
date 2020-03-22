@@ -18,36 +18,37 @@ use Symfony\Component\Routing\Annotation\Route;
 */
 class ProAlerteController extends AbstractController
 {
-    /**
-     * @Route("/", name="pro_alerte_index")
-     */
-    public function index(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
-    {
-      // Récupérer le repository de l'entité Bien
-      $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
-      // Récupérer les biens enregistrés en BD
-      $bien = $repositoryBien->find($idBien);
+  /**
+  * @Route("/", name="pro_alerte_index")
+  */
+  public function index(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
 
-      return $this->render('professionnel/alerte/index.html.twig', [
-        'alertes' => $alerteRepository->findByIdBien($idBien),
-        'autorisations' => $autorisationRepository->findByIdBien($idBien),
-        'bien' => $bien
-      ]);
-    }
+    return $this->render('professionnel/alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
+    ]);
+  }
 
-    /**
-    * @Route("/{id}", name="pro_alerte_show", methods={"GET"})
-    */
-    public function show(Alerte $alerte, $idBien): Response
-    {
-      // Récupérer le repository de l'entité Bien
-      $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
-      // Récupérer les biens enregistrés en BD
-      $bien = $repositoryBien->find($idBien);
+  /**
+  * @Route("/show/{id}", name="pro_alerte_show", methods={"GET"})
+  */
+  public function show(Alerte $alerte, AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
 
-      return $this->render('alerte/show.html.twig', [
-        'alerte' => $alerte,
-        'bien' => $bien
-      ]);
-    }
+    return $this->render('professionnel/alerte/show.html.twig', [
+      'alerte' => $alerte,
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
+    ]);
+  }
 }
