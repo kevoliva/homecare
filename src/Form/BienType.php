@@ -17,7 +17,6 @@ class BienType extends AbstractType
             ->add('codePostal')
             ->add('dateConstruct')
             ->add('surface')
-            ->add('proprietaire')
         ;
     }
 

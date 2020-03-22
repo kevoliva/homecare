@@ -35,13 +35,15 @@ class BienController extends AbstractController
     /**
      * @Route("/new", name="bien_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
+
         $bien = new Bien();
         $form = $this->createForm(BienType::class, $bien);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+          $bien->setProprietaire($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($bien);
             $entityManager->flush();
