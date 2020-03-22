@@ -1,7 +1,7 @@
-{% extends 'proprietaire_base.html.twig' %}
+{% extends 'professionnel_base.html.twig' %}
 
 {% block title %}
-Mes interventions
+Interventions
 {% endblock %}
 
 {% block contenu %}
@@ -10,8 +10,8 @@ Mes interventions
     <center>
 
       <h2>Ajouter une nouvelle intervention</h2>
-      <p>Philippe Dupont</p>
-      <p>33 Rue de la Paix - 64600 Anglet</p>
+      <p>{{ bien.proprietaire.getPrenom }} {{ bien.proprietaire.getNom }} </p>
+      <p>{{ bien.adresse }} - {{ bien.codePostal }} {{ bien.ville }}</p>
       <hr>
 
     </center>
@@ -27,7 +27,7 @@ Mes interventions
 
     <br>
     <center>
-      <a href="{{ path('pro_intervention_index') }}">
+      <a href="{{ path('pro_intervention_index', { idBien:bien.id }) }}">
         <button class="btn btn-danger btn-sm">Annuler</button>
       </a>
     </center>

@@ -38,22 +38,30 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/new", name="pro_intervention_new", methods={"GET","POST"})
   */
-  public function new(Request $request): Response
+  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository): Response
   {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
     $intervention = new Intervention();
     $form = $this->createForm(InterventionType::class, $intervention);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $intervention->setBien($bien);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($intervention);
       $entityManager->flush();
 
-      return $this->redirectToRoute('intervention_index');
+      return $this->redirectToRoute('pro_intervention_index', ['idBien' => $idBien]);
     }
 
     return $this->render('professionnel/intervention/new.html.twig', [
       'intervention' => $intervention,
+      'bien'=> $bien,
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
       'form' => $form->createView(),
     ]);
   }
