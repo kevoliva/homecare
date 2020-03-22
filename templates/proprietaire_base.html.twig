@@ -72,6 +72,7 @@
       </div>
       <nav class="navbar-mobile">
         <div class="container-fluid">
+          {% block rubriques %}
           <ul class="navbar-mobile__list list-unstyled">
             <li>
               <a href="{{path('plan_index', {idBien:bien.id})}}">
@@ -94,6 +95,7 @@
                         <i><img src="{{asset('images/icon/autorisation.ico')}}"/></i>Mes autorisations</a>
                       </li>
                     </ul>
+                    {% endblock %}
                   </div>
                 </nav>
               </header>
@@ -107,6 +109,7 @@
                   </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
+                  {% block rubriques2 %}
                   <nav class="navbar-sidebar">
                     <b>
                       <ul class="list-unstyled navbar__list">
@@ -133,6 +136,7 @@
                                 </ul>
                               </b>
                             </nav>
+                            {% endblock %}
                           </div>
                         </aside>
                         <!-- END MENU SIDEBAR-->
