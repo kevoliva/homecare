@@ -144,6 +144,9 @@ class PlanController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     if ($this->isCsrfTokenValid('delete'.$plan->getId(), $request->request->get('_token'))) {
+      // Supprimer fichier du dossier public/uploads
+      unlink('uploads/plans/'.$plan->getCheminFic());
+
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($plan);
       $entityManager->flush();

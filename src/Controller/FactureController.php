@@ -144,6 +144,7 @@ class FactureController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
+      unlink('uploads/factures/'.$facture->getCheminFic());
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($facture);
       $entityManager->flush();
