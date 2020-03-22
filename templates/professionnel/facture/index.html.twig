@@ -57,7 +57,7 @@ Factures
           <td>{{ factureCourante.libelle }}</td>
           <td>{{ factureCourante.laDate|date('d/m/Y') }}</td>
           <td>
-            <a href="{{path('facture_show', {id:factureCourante.id, idBien:bien.id})}}">
+            <a href="{{path('pro_facture_show', {id:factureCourante.id, idBien:bien.id})}}">
               <i class="demo-icon icon-eye" style="color:#999999"></i>
             </a>
           </td>
