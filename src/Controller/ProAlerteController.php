@@ -51,4 +51,35 @@ class ProAlerteController extends AbstractController
       'bien' => $bien
     ]);
   }
+
+  /**
+  * @Route("/new", name="pro_alerte_new", methods={"GET","POST"})
+  */
+  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $alerte = new Alerte();
+    $form = $this->createForm(AlerteType::class, $alerte);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $alerte->setBien($bien);
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($alerte);
+      $entityManager->flush();
+
+      return $this->redirectToRoute('pro_alerte_index', ['idBien' => $idBien]);
+    }
+
+    return $this->render('professionnel/alerte/new.html.twig', [
+      'alerte' => $alerte,
+      'bien'=> $bien,
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'form' => $form->createView(),
+    ]);
+  }
 }
