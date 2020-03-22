@@ -59,12 +59,19 @@ class ProInterventionController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="pro_intervention_show", methods={"GET"})
+  * @Route("/show/{id}", name="pro_intervention_show", methods={"GET"})
   */
-  public function show(Intervention $intervention): Response
+  public function show(Intervention $intervention, AutorisationRepository $autorisationRepository, $idBien): Response
   {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
     return $this->render('professionnel/intervention/show.html.twig', [
       'intervention' => $intervention,
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
     ]);
   }
 

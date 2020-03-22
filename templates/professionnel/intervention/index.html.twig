@@ -57,7 +57,7 @@ Interventions
         <td>{{ interventionCourante.libelle }}</td>
         <td>{{ interventionCourante.laDate|date('d/m/Y') }}</td>
         <td>
-          <a href="{{path('intervention_show', {id:interventionCourante.id, idBien:bien.id})}}">
+          <a href="{{path('pro_intervention_show', {id:interventionCourante.id, idBien:bien.id})}}">
             <i class="demo-icon icon-eye" style="color:#999999"></i>
           </a>
         </td>

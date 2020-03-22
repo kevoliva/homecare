@@ -36,7 +36,7 @@ class ProPlanController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="pro_plan_show", methods={"GET"})
+  * @Route("/show/{id}", name="pro_plan_show", methods={"GET"})
   */
   public function show(Plan $plan, AutorisationRepository $autorisationRepository, $idBien): Response
   {

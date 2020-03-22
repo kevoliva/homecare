@@ -36,7 +36,7 @@ class ProFactureController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="pro_facture_show", methods={"GET"})
+  * @Route("/show/{id}", name="pro_facture_show", methods={"GET"})
   */
   public function show(Facture $facture, AutorisationRepository $autorisationRepository, $idBien): Response
   {
