@@ -45,6 +45,8 @@ class HomecareController extends AbstractController
     $bien = $repositoryBien->find($idBien);
     // Envoyer les biens récupérés à la vue chargée de les afficher
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('homecare/index.html.twig',
     ['bien' => $bien]);
 
