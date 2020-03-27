@@ -78,6 +78,8 @@ class SecurityController extends AbstractController
       $ancienNom = $proprietaire->getNom();
       $nouveauNom = $proprietaire->setNom(ucfirst(strtolower($ancienNom)));
 
+      $proprietaire->setEmail(strtolower($proprietaire->getEmail()));
+
       //Encoder le mot de passe de l'utilisateur
       $encodagePassword = $encoder->encodePassword($proprietaire, $proprietaire->getPassword());
       $proprietaire->setPassword($encodagePassword);
