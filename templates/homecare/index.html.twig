@@ -6,5 +6,8 @@
     {{bien.adresse}}
   </h2>
   <h4>{{bien.ville}} - {{bien.codePostal}}</h4>
+  <a href="{{path('bien_edit', {idBien:bien.id})}}">
+    <font size=-1 style="color:#C6CCCD">Modifier le bien</font>
+  </a>
 </center>
 {% endblock %}

@@ -61,10 +61,15 @@ class BienController extends AbstractController
 
 
   /**
-  * @Route("/{id}/edit", name="bien_edit", methods={"GET","POST"})
+  * @Route("/{idBien}/edit", name="bien_edit", methods={"GET","POST"})
   */
-  public function edit(Request $request, Bien $bien): Response
+  public function edit(Request $request, $idBien): Response
   {
+
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+    
     $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(BienType::class, $bien);

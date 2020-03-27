@@ -1,13 +1,39 @@
-<!DOCTYPE html>
+{% extends 'proprietaire_base.html.twig' %}
 
-<title>Edit Bien</title>
+{% block title %}
+Biens
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Bien</h1>
 
-    {{ include('bien/_form.html.twig', {'button_label': 'Update'}) }}
+{% block contenu %}
+<div class="row">
+  <div class="col-md-12">
+    <center>
+      <h2>
+        Modifier le bien
+      </h2>
+      <p>
+        {{ bien.adresse }} {{ bien.codePostal }} {{ bien.ville }}
+      </p>
+    </center>
+    <hr>
+  </div>
+</div>
 
-    <a href="{{ path('bien_index') }}">back to list</a>
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
 
-    {{ include('bien/_delete_form.html.twig') }}
+    {{ include('bien/_form.html.twig', {'button_label': 'Valider !'}) }}
+    <br>
+    <center>
+      {{ include('bien/_delete_form.html.twig') }}
+    </center>
+
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
+
 {% endblock %}
