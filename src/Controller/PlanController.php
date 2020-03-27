@@ -30,6 +30,8 @@ class PlanController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('plan/index.html.twig', [
       'plans' => $planRepository->findByIdBien($idBien),
       'bien' => $bien
@@ -45,6 +47,8 @@ class PlanController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $plan = new Plan();
     $form = $this->createForm(PlanType::class, $plan);
@@ -101,6 +105,8 @@ class PlanController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('plan/show.html.twig', [
       'plan' => $plan,
       'bien' => $bien
@@ -116,6 +122,8 @@ class PlanController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(PlanType::class, $plan);
     $form->handleRequest($request);
@@ -142,6 +150,8 @@ class PlanController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     if ($this->isCsrfTokenValid('delete'.$plan->getId(), $request->request->get('_token'))) {
       // Supprimer fichier du dossier public/uploads

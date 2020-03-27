@@ -64,6 +64,8 @@ class BienController extends AbstractController
      */
     public function edit(Request $request, Bien $bien): Response
     {
+      $this->denyAccessUnlessGranted('VIEW', $bien);
+
         $form = $this->createForm(BienType::class, $bien);
         $form->handleRequest($request);
 
@@ -84,6 +86,7 @@ class BienController extends AbstractController
      */
     public function delete(Request $request, Bien $bien): Response
     {
+      $this->denyAccessUnlessGranted('VIEW', $bien);
         if ($this->isCsrfTokenValid('delete'.$bien->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($bien);

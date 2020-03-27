@@ -29,6 +29,9 @@ class FactureController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     // Envoyer les biens récupérés à la vue chargée de les afficher
     return $this->render('facture/index.html.twig', [
       'factures' => $factureRepository->findByIdBien($idBien),
@@ -45,6 +48,8 @@ class FactureController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $facture = new Facture();
     $form = $this->createForm(FactureType::class, $facture);
@@ -101,6 +106,8 @@ class FactureController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('facture/show.html.twig', [
       'facture' => $facture,
       'bien' => $bien
@@ -116,6 +123,8 @@ class FactureController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(FactureType::class, $facture);
     $form->handleRequest($request);
@@ -142,6 +151,8 @@ class FactureController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
       unlink('uploads/factures/'.$facture->getCheminFic());

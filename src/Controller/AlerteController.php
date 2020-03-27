@@ -27,6 +27,8 @@ class AlerteController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBien($idBien),
       'bien' => $bien
@@ -42,6 +44,8 @@ class AlerteController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $alerte = new Alerte();
     $form = $this->createForm(AlerteType::class, $alerte);
@@ -74,6 +78,8 @@ class AlerteController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('alerte/show.html.twig', [
       'alerte' => $alerte,
       'bien' => $bien
@@ -89,6 +95,8 @@ class AlerteController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(AlerteType::class, $alerte);
     $form->handleRequest($request);
@@ -115,6 +123,8 @@ class AlerteController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     if ($this->isCsrfTokenValid('delete'.$alerte->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();

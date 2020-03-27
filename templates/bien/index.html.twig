@@ -29,8 +29,8 @@ Biens
         <thead>
           <tr>
             <th>Adresse</th>
-            <th>Ville</th>
             <th>Code postal</th>
+            <th>Ville</th>
             <th><i class="demo-icon icon-eye" style="color:#000000"></i></th>
           </tr>
         </thead>
@@ -39,8 +39,8 @@ Biens
           <tr>
 
             <td>{{ bien.adresse }}</td>
-            <td>{{ bien.ville }}</td>
             <td>{{ bien.codePostal }}</td>
+            <td>{{ bien.ville }}</td>
 
             <td>
               <a href="{{ path('homecare_my', {'idBien': bien.id}) }}"><i class="demo-icon icon-eye" style="color:#999999"></i></a>

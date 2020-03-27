@@ -15,46 +15,47 @@ Biens
     <div class="col-md-12">
       <center>
         <h2>Veuillez sélectionner le bien d'un client</h2>
-          <br>
-          <hr>
-        </center>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Adresse</th>
-              <th>Ville</th>
-              <th>Code postal</th>
-              <th><i class="demo-icon icon-eye" style="color:#000000"></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for bien in biens %}
-            <tr>
-
-              <td>{{ bien.adresse }}</td>
-              <td>{{ bien.ville }}</td>
-              <td>{{ bien.codePostal }}</td>
-
-              <td>
-                <a href="{{ path('homecare_pro', {'idBien': bien.id}) }}"><i class="demo-icon icon-eye" style="color:#999999"></i></a>
-              </td>
-            </tr>
-            {% else %}
-            <tr>
-              <td colspan="7">Aucun bien ne vous est encore autorisé...</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </div>
-
+        <br>
+        <hr>
+      </center>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th><i class="demo-icon icon-eye" style="color:#000000"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bien in biens %}
+          <tr>
+            <td>{{ bien.proprietaire.getNom }}</td>
+            <td>{{ bien.adresse }}</td>
+            <td>{{ bien.codePostal }}</td>
+            <td>{{ bien.ville }}</td>
+
+            <td>
+              <a href="{{ path('homecare_pro', {'idBien': bien.id}) }}"><i class="demo-icon icon-eye" style="color:#999999"></i></a>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="7">Aucun bien ne vous est encore autorisé...</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
 
 {% endblock %}

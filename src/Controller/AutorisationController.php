@@ -28,6 +28,8 @@ class AutorisationController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('autorisation/index.html.twig', [
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
       'bien' => $bien
@@ -43,6 +45,8 @@ class AutorisationController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $autorisation = new Autorisation();
     $autorisation->setBien($bien);
@@ -77,6 +81,8 @@ class AutorisationController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('autorisation/show.html.twig', [
       'autorisation' => $autorisation,
       'bien' => $bien
@@ -92,6 +98,8 @@ class AutorisationController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(EditAutorisationType::class, $autorisation);
     $form->handleRequest($request);
@@ -118,6 +126,8 @@ class AutorisationController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     if ($this->isCsrfTokenValid('delete'.$autorisation->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();

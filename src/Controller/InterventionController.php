@@ -27,6 +27,8 @@ class InterventionController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('intervention/index.html.twig', [
       'interventions' => $interventionRepository->findByIdBien($idBien),
       'bien' => $bien
@@ -42,6 +44,8 @@ class InterventionController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $intervention = new Intervention();
     $form = $this->createForm(InterventionType::class, $intervention);
@@ -74,6 +78,8 @@ class InterventionController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
     return $this->render('intervention/show.html.twig', [
       'intervention' => $intervention,
       'bien' => $bien
@@ -89,6 +95,8 @@ class InterventionController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(InterventionType::class, $intervention);
     $form->handleRequest($request);
@@ -115,6 +123,8 @@ class InterventionController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
     if ($this->isCsrfTokenValid('delete'.$intervention->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();
