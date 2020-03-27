@@ -28,6 +28,8 @@ class ProPlanController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     return $this->render('professionnel/plan/index.html.twig', [
       'plans' => $planRepository->findByIdBien($idBien),
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
@@ -44,6 +46,8 @@ class ProPlanController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
 
     return $this->render('professionnel/plan/show.html.twig', [
       'plan' => $plan,

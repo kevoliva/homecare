@@ -65,6 +65,8 @@ class HomecareController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     // Récupérer le repository de l'entité Autorisation
     $repositoryAutorisation = $this->getDoctrine()->getRepository(Autorisation::class);
     // Récupérer les biens enregistrés en BD

@@ -61,4 +61,13 @@ public function entreprisesOrdreAlpha($id){
   return $resultats;
 }
 
+public function getUsernameProprietaireIfAuthorization($bien){
+  return $this->createQueryBuilder('proprietaire')
+  ->join('bien.autorisations', 'a')
+  ->join('a.professionnel', 'professionnel')
+  ->setParameter('bien', $bien)
+  ->getQuery()
+  ->getResult();
+}
+
 }

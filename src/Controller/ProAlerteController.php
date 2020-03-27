@@ -28,6 +28,8 @@ class ProAlerteController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     return $this->render('professionnel/alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBien($idBien),
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
@@ -45,6 +47,8 @@ class ProAlerteController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     return $this->render('professionnel/alerte/show.html.twig', [
       'alerte' => $alerte,
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
@@ -61,6 +65,8 @@ class ProAlerteController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
 
     $alerte = new Alerte();
     $form = $this->createForm(AlerteType::class, $alerte);

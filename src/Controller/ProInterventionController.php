@@ -28,6 +28,8 @@ class ProInterventionController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     return $this->render('professionnel/intervention/index.html.twig', [
       'interventions' => $interventionRepository->findAll(),
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
@@ -44,6 +46,8 @@ class ProInterventionController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
 
     $intervention = new Intervention();
     $form = $this->createForm(InterventionType::class, $intervention);
@@ -75,6 +79,8 @@ class ProInterventionController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
 
     return $this->render('professionnel/intervention/show.html.twig', [
       'intervention' => $intervention,

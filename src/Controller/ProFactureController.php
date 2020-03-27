@@ -28,6 +28,8 @@ class ProFactureController extends AbstractController
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
 
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
     return $this->render('/professionnel/facture/index.html.twig', [
       'factures' => $factureRepository->findAll(),
       'autorisations' => $autorisationRepository->findByIdBien($idBien),
@@ -44,6 +46,8 @@ class ProFactureController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
 
     return $this->render('professionnel/facture/show.html.twig', [
       'facture' => $facture,
