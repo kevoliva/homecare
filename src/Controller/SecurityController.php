@@ -116,6 +116,10 @@ class SecurityController extends AbstractController
     {
       $professionnel->setRoles(['ROLE_PROFESSIONNEL']);
 
+      $professionnel->setNomEntrep(strtoupper($professionnel->getNomEntrep()));
+
+      $professionnel->setEmail(strtolower($professionnel->getEmail()));
+
       //Encoder le mot de passe de l'utilisateur
       $encodagePassword = $encoder->encodePassword($professionnel, $professionnel->getPassword());
       $professionnel->setPassword($encodagePassword);
