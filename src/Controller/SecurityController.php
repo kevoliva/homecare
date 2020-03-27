@@ -72,6 +72,12 @@ class SecurityController extends AbstractController
     {
       $proprietaire->setRoles(['ROLE_PROPRIETAIRE']);
 
+      // Avoir nom et prénom de cette forme là : Xxxxx Xxxxx
+      $ancienPrenom = $proprietaire->getPrenom();
+      $nouveauPrenom = $proprietaire->setPrenom(ucfirst(strtolower($ancienPrenom)));
+      $ancienNom = $proprietaire->getNom();
+      $nouveauNom = $proprietaire->setNom(ucfirst(strtolower($ancienNom)));
+
       //Encoder le mot de passe de l'utilisateur
       $encodagePassword = $encoder->encodePassword($proprietaire, $proprietaire->getPassword());
       $proprietaire->setPassword($encodagePassword);
