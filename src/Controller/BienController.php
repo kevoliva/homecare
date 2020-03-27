@@ -13,86 +13,87 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
- * @Route("/my")
- */
+* @Route("/my")
+*/
 class BienController extends AbstractController
 {
-    /**
-     * @Route("/", name="bien_index", methods={"GET"})
-     */
-    public function index(UserInterface $user): Response
-    {
-      // Récupérer le repository de l'entité Propriétaire
-      $repositoryProprietaire = $this->getDoctrine()->getRepository(Bien::class);
-      // Récupérer les propriétaires qui ont donné une autorisation enregistrés en BD
-      $biens = $repositoryProprietaire->getBiensProprietaire($user);
+  /**
+  * @Route("/", name="bien_index", methods={"GET"})
+  */
+  public function index(UserInterface $user): Response
+  {
+    // Récupérer le repository de l'entité Propriétaire
+    $repositoryProprietaire = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les propriétaires qui ont donné une autorisation enregistrés en BD
+    $biens = $repositoryProprietaire->getBiensProprietaire($user);
 
-        return $this->render('bien/index.html.twig', [
-            'biens' => $biens
-        ]);
+    return $this->render('bien/index.html.twig', [
+      'biens' => $biens
+    ]);
+  }
+
+  /**
+  * @Route("/new", name="bien_new", methods={"GET","POST"})
+  */
+  public function new(Request $request, UserInterface $user): Response
+  {
+
+    $bien = new Bien();
+    $form = $this->createForm(BienType::class, $bien);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+
+      $bien->setProprietaire($user);
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($bien);
+      $entityManager->flush();
+
+      return $this->redirectToRoute('bien_index');
     }
 
-    /**
-     * @Route("/new", name="bien_new", methods={"GET","POST"})
-     */
-    public function new(Request $request, UserInterface $user): Response
-    {
+    return $this->render('bien/new.html.twig', [
+      'bien' => $bien,
+      'form' => $form->createView(),
+    ]);
+  }
 
-        $bien = new Bien();
-        $form = $this->createForm(BienType::class, $bien);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-          $bien->setProprietaire($user);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($bien);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('bien_index');
-        }
+  /**
+  * @Route("/{id}/edit", name="bien_edit", methods={"GET","POST"})
+  */
+  public function edit(Request $request, Bien $bien): Response
+  {
+    $this->denyAccessUnlessGranted('VIEW', $bien);
 
-        return $this->render('bien/new.html.twig', [
-            'bien' => $bien,
-            'form' => $form->createView(),
-        ]);
+    $form = $this->createForm(BienType::class, $bien);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $this->getDoctrine()->getManager()->flush();
+
+      return $this->redirectToRoute('bien_index');
     }
 
+    return $this->render('bien/edit.html.twig', [
+      'bien' => $bien,
+      'form' => $form->createView(),
+    ]);
+  }
 
-
-    /**
-     * @Route("/{id}/edit", name="bien_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Bien $bien): Response
-    {
-      $this->denyAccessUnlessGranted('VIEW', $bien);
-
-        $form = $this->createForm(BienType::class, $bien);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('bien_index');
-        }
-
-        return $this->render('bien/edit.html.twig', [
-            'bien' => $bien,
-            'form' => $form->createView(),
-        ]);
+  /**
+  * @Route("/{id}", name="bien_delete", methods={"DELETE"})
+  */
+  public function delete(Request $request, Bien $bien): Response
+  {
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+    if ($this->isCsrfTokenValid('delete'.$bien->getId(), $request->request->get('_token'))) {
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->remove($bien);
+      $entityManager->flush();
     }
 
-    /**
-     * @Route("/{id}", name="bien_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Bien $bien): Response
-    {
-      $this->denyAccessUnlessGranted('VIEW', $bien);
-        if ($this->isCsrfTokenValid('delete'.$bien->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($bien);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('bien_index');
-    }
+    return $this->redirectToRoute('bien_index');
+  }
 }
