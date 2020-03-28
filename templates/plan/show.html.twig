@@ -8,7 +8,7 @@ Mes plans
 <center>
   <h2>
     {{ plan.libelle }}
-  </h2>
+  </h2> {{ plan.laDate ? plan.laDate|date('d-m-Y') : '' }}
   <p>
     {{ plan.bien.getAdresse }}
     {{ plan.bien.getCodePostal }}
@@ -16,27 +16,13 @@ Mes plans
   </p>
 </center>
 <hr>
+<center>
+  <a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}" style="color:#C6CCCD" target="_blank">Ouvrir le plan</a>
+</center>
+<br>
+<embed src="{{ asset('uploads/plans/' ~ plan.cheminFic) }}" width=100% height=1000px type='application/pdf'/>
 
-<table class="table">
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>{{ plan.id }}</td>
-    </tr>
-    <tr>
-      <th>Libelle</th>
-      <td>{{ plan.libelle }}</td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td>{{ plan.laDate ? plan.laDate|date('Y-m-d') : '' }}</td>
-    </tr>
-    <tr>
-      <th>Plan</th>
-      <td><a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}">Voir le plan</a></td>
-    </tr>
-  </tbody>
-</table>
+
 <br>
 
 <a href="{{ path('plan_index', {idBien:bien.id}) }}">
@@ -44,7 +30,7 @@ Mes plans
 </a>
 
 <a href="{{ path('plan_edit', {'id': plan.id, idBien:bien.id}) }}" style="float:right">
-<button class="btn btn-info btn-sm">Modifier</button>
+  <button class="btn btn-info btn-sm">Modifier</button>
 </a>
 
 <center>
