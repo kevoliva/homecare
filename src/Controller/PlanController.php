@@ -33,7 +33,25 @@ class PlanController extends AbstractController
     $this->denyAccessUnlessGranted('VIEW', $bien);
 
     return $this->render('plan/index.html.twig', [
-      'plans' => $planRepository->findByIdBien($idBien),
+      'plans' => $planRepository->findByIdBienOrdreAlpha($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/desalphabetique", name="plan_index_desalpha", methods={"GET"})
+  */
+  public function ordreDesalphabetique(PlanRepository $planRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('plan/index.html.twig', [
+      'plans' => $planRepository->findByIdBienOrdreDesalpha($idBien),
       'bien' => $bien
     ]);
   }

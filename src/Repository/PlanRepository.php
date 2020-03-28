@@ -48,12 +48,25 @@ class PlanRepository extends ServiceEntityRepository
     }
     */
 
-    public function findByIdBien($idBien)
+    public function findByIdBienOrdreAlpha($idBien)
     {
         return $this->createQueryBuilder('p')
             ->join('p.bien', 'b')
             ->andWhere('b.id = :idBien')
             ->setParameter('idBien', $idBien)
+            ->orderBy('p.libelle', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByIdBienOrdreDesalpha($idBien)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('p.libelle', 'DESC')
             ->getQuery()
             ->getResult()
         ;
