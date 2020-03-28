@@ -9,6 +9,7 @@ Mes factures
   <h2>
     {{ facture.libelle }}
   </h2>
+  {{ facture.laDate ? facture.laDate|date('d-m-Y') : '' }}
   <p>
     {{ facture.bien.getAdresse }}
     {{ facture.bien.getCodePostal }}
@@ -16,27 +17,12 @@ Mes factures
   </p>
 </center>
 <hr>
+<center>
+  <a href="{{ asset('uploads/factures/' ~ facture.cheminFic) }}" style="color:#C6CCCD" target="_blank">Ouvrir la facture</a>
+</center>
+<br>
+<embed src="{{ asset('uploads/factures/' ~ facture.cheminFic) }}" width=100% height=1000px type='application/pdf'/>
 
-<table class="table">
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>{{ facture.id }}</td>
-    </tr>
-    <tr>
-      <th>Libelle</th>
-      <td>{{ facture.libelle }}</td>
-    </tr>
-    <tr>
-      <th>LaDate</th>
-      <td>{{ facture.laDate ? facture.laDate|date('Y-m-d') : '' }}</td>
-    </tr>
-    <tr>
-      <th>Facture</th>
-      <td><a href="{{ asset('uploads/factures/' ~ facture.cheminFic) }}">Voir la facture</a></td>
-    </tr>
-  </tbody>
-</table>
 <br>
 
 <a href="{{ path('facture_index', {idBien:bien.id}) }}">
@@ -44,7 +30,7 @@ Mes factures
 </a>
 
 <a href="{{ path('facture_edit', {'id': facture.id, idBien:bien.id}) }}" style="float:right">
-<button class="btn btn-info btn-sm">Modifier</button>
+  <button class="btn btn-info btn-sm">Modifier</button>
 </a>
 
 <center>

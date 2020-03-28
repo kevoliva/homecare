@@ -8,7 +8,8 @@ Mes plans
 <center>
   <h2>
     {{ plan.libelle }}
-  </h2> {{ plan.laDate ? plan.laDate|date('d-m-Y') : '' }}
+  </h2>
+  {{ plan.laDate ? plan.laDate|date('d-m-Y') : '' }}
   <p>
     {{ plan.bien.getAdresse }}
     {{ plan.bien.getCodePostal }}
@@ -21,7 +22,6 @@ Mes plans
 </center>
 <br>
 <embed src="{{ asset('uploads/plans/' ~ plan.cheminFic) }}" width=100% height=1000px type='application/pdf'/>
-
 
 <br>
 
