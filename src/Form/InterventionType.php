@@ -19,7 +19,8 @@ class InterventionType extends AbstractType
     ->add('libelle', TextType::class, [
       'attr' => [
         'placeholder' => 'Réparation fuite salon, changement baignoire...'
-      ]
+      ],
+      'label' => 'Libellé'
     ])
 
     ->add('typeInterv', ChoiceType::class, [
@@ -42,14 +43,15 @@ class InterventionType extends AbstractType
 
     ->add('remarque', TextareaType::class, [
       'attr' => [
-        'placeholder' => 'Remarques (ou conseils) à ajouter...',
+        'placeholder' => 'Remarques ou conseils à ajouter... (facultatif)',
         'rows' => 6,
       ],
-      'label' => 'Remarques'
+      'label' => 'Remarques',
     ])
 
     ->add('laDate', DateType::class, ['widget' => 'single_text',
     'label' => 'Date de l\'intervention',
+    'data' => new \DateTime("now")
   ])
 
   //->add('alerte')

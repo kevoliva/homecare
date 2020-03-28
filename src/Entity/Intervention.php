@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InterventionRepository")
@@ -18,16 +19,19 @@ class Intervention
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotNull(message = "Le libellé doit être reseigné")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotNull(message = "Le type d'intervention doit être reseigné")
      */
     private $typeInterv;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotNull(message = "L'observation de l'intervention doit être reseignée")
      */
     private $observation;
 
@@ -49,6 +53,7 @@ class Intervention
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotNull()
      */
     private $laDate;
 
