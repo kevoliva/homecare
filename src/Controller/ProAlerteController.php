@@ -106,6 +106,7 @@ class ProAlerteController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC_PRO', $alerte);
 
     return $this->render('professionnel/alerte/show.html.twig', [
       'alerte' => $alerte,

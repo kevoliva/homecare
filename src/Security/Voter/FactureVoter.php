@@ -12,7 +12,7 @@ class FactureVoter extends Voter
   {
     // replace with your own logic
     // https://symfony.com/doc/current/security/voters.html
-    return in_array($attribute, ['VIEW_DOC'])
+    return in_array($attribute, ['VIEW_DOC', 'VIEW_DOC_PRO'])
     && $subject instanceof \App\Entity\Facture;
   }
 
@@ -29,6 +29,19 @@ class FactureVoter extends Voter
       case 'VIEW_DOC':
       return $subject->getBien()->getProprietaire()->getUsername() == $user->getUsername();
       break;
+
+      case 'VIEW_DOC_PRO':
+      $autorisations = $subject->getBien()->getAutorisations();
+      foreach ($autorisations->toArray() as $autorisation) {
+        if($user->getUsername() == $autorisation->getProfessionnel()->getUsername()){
+          // Si une autorisation est trouvée dans la collection
+          return true;
+        }
+      }
+      // Si aucune autorisation n'est trouvée
+      return false;
+      break;
+
     }
 
     return false;

@@ -139,6 +139,7 @@ class ProInterventionController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC_PRO', $intervention);
 
     return $this->render('professionnel/intervention/show.html.twig', [
       'intervention' => $intervention,

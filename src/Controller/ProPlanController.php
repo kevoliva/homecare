@@ -106,6 +106,8 @@ class ProPlanController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC_PRO', $plan);
+
 
     return $this->render('professionnel/plan/show.html.twig', [
       'plan' => $plan,

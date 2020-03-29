@@ -43,6 +43,7 @@ class BienVoter extends Voter
       }
       // Si aucune autorisation n'est trouvée
       return false;
+      break;
     }
 
     return false;
