@@ -133,6 +133,7 @@ class InterventionController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $intervention);
 
     return $this->render('intervention/show.html.twig', [
       'intervention' => $intervention,
@@ -151,6 +152,7 @@ class InterventionController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $intervention);
 
     $form = $this->createForm(InterventionType::class, $intervention);
     $form->handleRequest($request);
@@ -179,6 +181,7 @@ class InterventionController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $intervention);
 
     if ($this->isCsrfTokenValid('delete'.$intervention->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();

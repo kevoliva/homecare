@@ -100,6 +100,7 @@ class AutorisationController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $autorisation);
 
     return $this->render('autorisation/show.html.twig', [
       'autorisation' => $autorisation,
@@ -118,6 +119,7 @@ class AutorisationController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $autorisation);
 
     $form = $this->createForm(EditAutorisationType::class, $autorisation);
     $form->handleRequest($request);
@@ -146,6 +148,7 @@ class AutorisationController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $autorisation);
 
     if ($this->isCsrfTokenValid('delete'.$autorisation->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();

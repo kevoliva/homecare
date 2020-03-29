@@ -133,6 +133,7 @@ class AlerteController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $alerte);
 
     return $this->render('alerte/show.html.twig', [
       'alerte' => $alerte,
@@ -151,6 +152,7 @@ class AlerteController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $alerte);
 
     $form = $this->createForm(AlerteType::class, $alerte);
     $form->handleRequest($request);
@@ -179,6 +181,7 @@ class AlerteController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $alerte);
 
     if ($this->isCsrfTokenValid('delete'.$alerte->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();

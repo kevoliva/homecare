@@ -164,6 +164,7 @@ class FactureController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $facture);
 
     return $this->render('facture/show.html.twig', [
       'facture' => $facture,
@@ -182,6 +183,7 @@ class FactureController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $facture);
 
     $form = $this->createForm(FactureType::class, $facture);
     $form->handleRequest($request);
@@ -210,6 +212,7 @@ class FactureController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $facture);
 
     if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
       unlink('uploads/factures/'.$facture->getCheminFic());

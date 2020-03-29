@@ -160,6 +160,7 @@ class PlanController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $plan);
 
     return $this->render('plan/show.html.twig', [
       'plan' => $plan,
@@ -178,6 +179,7 @@ class PlanController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $plan);
 
     $form = $this->createForm(PlanType::class, $plan);
     $form->handleRequest($request);
@@ -206,6 +208,7 @@ class PlanController extends AbstractController
     $bien = $repositoryBien->find($idBien);
 
     $this->denyAccessUnlessGranted('VIEW', $bien);
+    $this->denyAccessUnlessGranted('VIEW_DOC', $plan);
 
     if ($this->isCsrfTokenValid('delete'.$plan->getId(), $request->request->get('_token'))) {
       // Supprimer fichier du dossier public/uploads
