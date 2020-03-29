@@ -123,7 +123,7 @@ class AlerteController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="alerte_show", methods={"GET"})
+  * @Route("/show/{id}", name="alerte_show", methods={"GET"})
   */
   public function show(Alerte $alerte, $idBien): Response
   {

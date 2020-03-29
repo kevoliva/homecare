@@ -123,7 +123,7 @@ class InterventionController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="intervention_show", methods={"GET"})
+  * @Route("/show/{id}", name="intervention_show", methods={"GET"})
   */
   public function show(Intervention $intervention, $idBien): Response
   {

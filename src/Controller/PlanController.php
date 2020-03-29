@@ -150,7 +150,7 @@ class PlanController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="plan_show", methods={"GET"})
+  * @Route("/show/{id}", name="plan_show", methods={"GET"})
   */
   public function show(Plan $plan, $idBien): Response
   {

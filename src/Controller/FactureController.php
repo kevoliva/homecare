@@ -154,7 +154,7 @@ class FactureController extends AbstractController
   }
 
   /**
-  * @Route("/{id}", name="facture_show", methods={"GET"})
+  * @Route("/show/{id}", name="facture_show", methods={"GET"})
   */
   public function show(Facture $facture, $idBien): Response
   {
