@@ -76,7 +76,7 @@ class HomecareController extends AbstractController
       'bien' => $bien, 'autorisations' => $autorisations
     ]);
 
-    return $this->render('professionnel_base.html.twig',
-    ['bien' => $bien, 'autorisations' => $autorisations]);
+    // return $this->render('professionnel_base.html.twig',
+    // ['bien' => $bien, 'autorisations' => $autorisations]);
   }
 }
