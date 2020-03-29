@@ -5,23 +5,23 @@ Plans
 {% endblock %}
 
 {% block contenu %}
-<h1>Plan</h1>
-
-<table class="table">
-  <tbody>
-    <tr>
-      <th>Libelle</th>
-      <td>{{ plan.libelle }}</td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td>{{ plan.laDate ? plan.laDate|date('Y-m-d') : '' }}</td>
-    </tr>
-    <tr>
-      <th>Plan</th>
-      <td><a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}">Voir le plan</a></td>
-    </tr>
-  </tbody>
-</table>
+<center>
+  <h2>
+    {{ plan.libelle }}
+  </h2>
+  {{ plan.laDate ? plan.laDate|date('d-m-Y') : '' }}<br>
+  {{ plan.bien.proprietaire.getPrenom }} {{ plan.bien.proprietaire.getNom }}
+  <p>
+    {{ plan.bien.getAdresse }}
+    {{ plan.bien.getCodePostal }}
+    {{ plan.bien.getVille }}
+  </p>
+</center>
+<hr>
+<center>
+  <a href="{{ asset('uploads/plans/' ~ plan.cheminFic) }}" style="color:#C6CCCD" target="_blank">Ouvrir le plan</a>
+</center>
+<br>
+<embed src="{{ asset('uploads/plans/' ~ plan.cheminFic) }}" width=100% height=1000px type='application/pdf'/>
 
 {% endblock %}
