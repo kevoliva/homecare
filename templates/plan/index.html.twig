@@ -28,15 +28,15 @@ Mes plans
   <div class="col-md-12">
     <center>
       <div class="dropdown show">
-        <a class="btn btn-outline-info btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="btn btn-outline-secondary btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Trier
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Le plus récent</a>
-          <a class="dropdown-item" href="#">Le plus ancien</a>
-          <a class="dropdown-item" href="{{path('plan_index', {idBien:bien.id})}}">A-z</a>
-          <a class="dropdown-item" href="{{path('plan_index_desalpha', {idBien:bien.id})}}">Z-a</a>
+          <a class="dropdown-item" href="{{path('plan_index_recent', {idBien:bien.id})}}">Le plus récent</a>
+          <a class="dropdown-item" href="{{path('plan_index_ancien', {idBien:bien.id})}}">Le plus ancien</a>
+          <a class="dropdown-item" href="{{path('plan_index', {idBien:bien.id})}}">Alphabétique</a>
+          <a class="dropdown-item" href="{{path('plan_index_desalpha', {idBien:bien.id})}}">Désalphabétique</a>
         </div>
       </div>
     </center>

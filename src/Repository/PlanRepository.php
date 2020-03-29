@@ -71,4 +71,28 @@ class PlanRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findByIdBienRecent($idBien)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('p.laDate', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByIdBienAncien($idBien)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('p.laDate', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -57,6 +57,42 @@ class PlanController extends AbstractController
   }
 
   /**
+  * @Route("/recent", name="plan_index_recent", methods={"GET"})
+  */
+  public function ordreRecent(PlanRepository $planRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('plan/index.html.twig', [
+      'plans' => $planRepository->findByIdBienRecent($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/ancien", name="plan_index_ancien", methods={"GET"})
+  */
+  public function ordreAncien(PlanRepository $planRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('plan/index.html.twig', [
+      'plans' => $planRepository->findByIdBienAncien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/new", name="plan_new", methods={"GET","POST"})
   */
   public function new(Request $request, $idBien): Response
