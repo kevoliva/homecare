@@ -37,6 +37,24 @@ class AutorisationController extends AbstractController
   }
 
   /**
+  * @Route("/desalphabetique", name="autorisation_index_desalpha", methods={"GET"})
+  */
+  public function ordreDesalphabetique(AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('autorisation/index.html.twig', [
+      'autorisations' => $autorisationRepository->findByIdBienOrdreDesalphabetique($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/new", name="autorisation_new", methods={"GET","POST"})
   */
   public function new(Request $request, $idBien): Response

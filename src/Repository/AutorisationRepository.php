@@ -54,10 +54,25 @@ class AutorisationRepository extends ServiceEntityRepository
           ->join('a.bien', 'b')
           ->andWhere('b.id = :idBien')
           ->setParameter('idBien', $idBien)
+          ->join('a.professionnel', 'p')
+          ->orderBy('p.nomEntrep', 'ASC')
           ->getQuery()
           ->getResult()
       ;
   }
+
+  public function findByIdBienOrdreDesalphabetique($idBien)
+{
+    return $this->createQueryBuilder('a')
+        ->join('a.bien', 'b')
+        ->andWhere('b.id = :idBien')
+        ->setParameter('idBien', $idBien)
+        ->join('a.professionnel', 'p')
+        ->orderBy('p.nomEntrep', 'DESC')
+        ->getQuery()
+        ->getResult()
+    ;
+}
 
   public function findByAutorisation($proConnecte, $bien)
 {

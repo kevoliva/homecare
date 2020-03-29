@@ -54,8 +54,45 @@ class AlerteRepository extends ServiceEntityRepository
            ->join('a.bien', 'b')
            ->andWhere('b.id = :idBien')
            ->setParameter('idBien', $idBien)
+           ->orderBy('a.libelle', 'ASC')
            ->getQuery()
            ->getResult()
        ;
    }
+
+   public function findByIdBienOrdreDesalphabetique($idBien)
+  {
+      return $this->createQueryBuilder('a')
+          ->join('a.bien', 'b')
+          ->andWhere('b.id = :idBien')
+          ->setParameter('idBien', $idBien)
+          ->orderBy('a.libelle', 'DESC')
+          ->getQuery()
+          ->getResult()
+      ;
+  }
+
+  public function findByIdBienRecent($idBien)
+ {
+     return $this->createQueryBuilder('a')
+         ->join('a.bien', 'b')
+         ->andWhere('b.id = :idBien')
+         ->setParameter('idBien', $idBien)
+         ->orderBy('a.laDate', 'DESC')
+         ->getQuery()
+         ->getResult()
+     ;
+ }
+
+ public function findByIdBienAncien($idBien)
+{
+    return $this->createQueryBuilder('a')
+        ->join('a.bien', 'b')
+        ->andWhere('b.id = :idBien')
+        ->setParameter('idBien', $idBien)
+        ->orderBy('a.laDate', 'ASC')
+        ->getQuery()
+        ->getResult()
+    ;
+}
 }

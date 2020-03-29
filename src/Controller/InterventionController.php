@@ -36,6 +36,60 @@ class InterventionController extends AbstractController
   }
 
   /**
+  * @Route("/desalphabetique", name="intervention_index_desalpha", methods={"GET"})
+  */
+  public function ordreDesalphabetique(InterventionRepository $interventionRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('intervention/index.html.twig', [
+      'interventions' => $interventionRepository->findByIdBienOrdreDesalphabetique($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/recent", name="intervention_index_recent", methods={"GET"})
+  */
+  public function ordreRecent(InterventionRepository $interventionRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('intervention/index.html.twig', [
+      'interventions' => $interventionRepository->findByIdBienRecent($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/ancien", name="intervention_index_ancien", methods={"GET"})
+  */
+  public function ordreAncien(InterventionRepository $interventionRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('intervention/index.html.twig', [
+      'interventions' => $interventionRepository->findByIdBienAncien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/new", name="intervention_new", methods={"GET","POST"})
   */
   public function new(Request $request, $idBien): Response

@@ -36,6 +36,60 @@ class AlerteController extends AbstractController
   }
 
   /**
+  * @Route("/desalphabetique", name="alerte_index_desalpha", methods={"GET"})
+  */
+  public function ordreDesalphabetique(AlerteRepository $alerteRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienOrdreDesalphabetique($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/recent", name="alerte_index_recent", methods={"GET"})
+  */
+  public function ordreRecent(AlerteRepository $alerteRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienRecent($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/ancien", name="alerte_index_ancien", methods={"GET"})
+  */
+  public function ordreAncien(AlerteRepository $alerteRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    return $this->render('alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienAncien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/new", name="alerte_new", methods={"GET","POST"})
   */
   public function new(Request $request, $idBien): Response

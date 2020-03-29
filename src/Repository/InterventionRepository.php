@@ -54,8 +54,45 @@ class InterventionRepository extends ServiceEntityRepository
            ->join('i.bien', 'b')
            ->andWhere('b.id = :idBien')
            ->setParameter('idBien', $idBien)
+           ->orderBy('i.libelle', 'ASC')
            ->getQuery()
            ->getResult()
        ;
    }
+
+   public function findByIdBienOrdreDesalphabetique($idBien)
+  {
+      return $this->createQueryBuilder('i')
+          ->join('i.bien', 'b')
+          ->andWhere('b.id = :idBien')
+          ->setParameter('idBien', $idBien)
+          ->orderBy('i.libelle', 'DESC')
+          ->getQuery()
+          ->getResult()
+      ;
+  }
+
+  public function findByIdBienRecent($idBien)
+ {
+     return $this->createQueryBuilder('i')
+         ->join('i.bien', 'b')
+         ->andWhere('b.id = :idBien')
+         ->setParameter('idBien', $idBien)
+         ->orderBy('i.laDate', 'DESC')
+         ->getQuery()
+         ->getResult()
+     ;
+ }
+
+ public function findByIdBienAncien($idBien)
+{
+    return $this->createQueryBuilder('i')
+        ->join('i.bien', 'b')
+        ->andWhere('b.id = :idBien')
+        ->setParameter('idBien', $idBien)
+        ->orderBy('i.laDate', 'ASC')
+        ->getQuery()
+        ->getResult()
+    ;
+}
 }
