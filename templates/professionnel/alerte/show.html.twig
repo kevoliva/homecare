@@ -5,23 +5,29 @@ Alertes
 {% endblock %}
 
 {% block contenu %}
-<h1>Alerte</h1>
+<center>
+  <h2>
+    {{ alerte.libelle }}
+  </h2>
+  {{ alerte.laDate ? alerte.laDate|date('d-m-Y') : '' }}<br>
+  {{ alerte.bien.proprietaire.getPrenom }} {{ alerte.bien.proprietaire.getNom }}
+  <p>
+    {{ alerte.bien.getAdresse }}
+    {{ alerte.bien.getCodePostal }}
+    {{ alerte.bien.getVille }}
+  </p>
+</center>
+<hr>
 
 <table class="table">
   <tbody>
-    <tr>
-      <th>Libelle</th>
-      <td>{{ alerte.libelle }}</td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td>{{ alerte.laDate ? alerte.laDate|date('Y-m-d') : '' }}</td>
-    </tr>
     <tr>
       <th>Description</th>
       <td>{{ alerte.description }}</td>
     </tr>
   </tbody>
 </table>
+<br>
+
 
 {% endblock %}

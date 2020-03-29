@@ -5,26 +5,39 @@ Interventions
 {% endblock %}
 
 {% block contenu %}
-<h1>Intervention</h1>
+<center>
+  <h2>
+    {{ intervention.libelle }}
+  </h2>
+  {{ intervention.laDate ? intervention.laDate|date('d-m-Y') : '' }}<br>
+  {{ intervention.bien.proprietaire.getPrenom }} {{ intervention.bien.proprietaire.getNom }}
+
+  <p>
+    {{ intervention.bien.getAdresse }}
+    {{ intervention.bien.getCodePostal }}
+    {{ intervention.bien.getVille }}
+  </p>
+</center>
+<hr>
 
 <table class="table">
   <tbody>
-    <tr>
-      <th>Libelle</th>
-      <td>{{ intervention.libelle }}</td>
-    </tr>
+
+    {% if intervention.typeInterv != 'Autre...' %}
     <tr>
       <th>Type d'intervention</th>
       <td>{{ intervention.typeInterv }}</td>
     </tr>
+    {% endif %}
     <tr>
-      <th>Observation</th>
+      <th>Observations</th>
       <td>{{ intervention.observation }}</td>
     </tr>
     <tr>
-      <th>Remarque</th>
+      <th>Remarques</th>
       <td>{{ intervention.remarque }}</td>
     </tr>
   </tbody>
 </table>
+<br>
 {% endblock %}

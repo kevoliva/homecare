@@ -9,6 +9,7 @@ Mes interventions
   <h2>
     {{ intervention.libelle }}
   </h2>
+  {{ intervention.laDate ? intervention.laDate|date('d-m-Y') : '' }}
   <p>
     {{ intervention.bien.getAdresse }}
     {{ intervention.bien.getCodePostal }}

@@ -9,6 +9,7 @@ Mes alertes
   <h2>
     {{ alerte.libelle }}
   </h2>
+  {{ alerte.laDate ? alerte.laDate|date('d-m-Y') : '' }}
   <p>
     {{ alerte.bien.getAdresse }}
     {{ alerte.bien.getCodePostal }}
@@ -17,29 +18,25 @@ Mes alertes
 </center>
 <hr>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Date d'alerte</th>
-                <td>{{ alerte.laDate ? alerte.laDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ alerte.description }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td>{{ alerte.description }}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
 
-    <a href="{{ path('alerte_index', {idBien:bien.id}) }}">
-      <button class="btn btn-info btn-sm">Retour</button>
-    </a>
+<a href="{{ path('alerte_index', {idBien:bien.id}) }}">
+  <button class="btn btn-info btn-sm">Retour</button>
+</a>
 
-    <a href="{{ path('alerte_edit', {'id': alerte.id, idBien:bien.id}) }}" style="float:right">
-    <button class="btn btn-info btn-sm">Modifier</button>
-    </a>
+<a href="{{ path('alerte_edit', {'id': alerte.id, idBien:bien.id}) }}" style="float:right">
+  <button class="btn btn-info btn-sm">Modifier</button>
+</a>
 
-    <center>
-    {{ include('alerte/_delete_form.html.twig') }}
-    </center>
+<center>
+  {{ include('alerte/_delete_form.html.twig') }}
+</center>
 {% endblock %}
