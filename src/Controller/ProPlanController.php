@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
 * @Route("/pro/{idBien}/plan")
@@ -21,7 +22,7 @@ class ProPlanController extends AbstractController
   /**
   * @Route("/", name="pro_plan_index", methods={"GET"})
   */
-  public function index(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function index(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -32,7 +33,7 @@ class ProPlanController extends AbstractController
 
     return $this->render('professionnel/plan/index.html.twig', [
       'plans' => $planRepository->findByIdBienOrdreAlpha($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -40,7 +41,7 @@ class ProPlanController extends AbstractController
   /**
   * @Route("/desalphabetique", name="pro_plan_index_desalpha", methods={"GET"})
   */
-  public function ordreDesalphabetique(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreDesalphabetique(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -51,7 +52,7 @@ class ProPlanController extends AbstractController
 
     return $this->render('professionnel/plan/index.html.twig', [
       'plans' => $planRepository->findByIdBienOrdreDesalpha($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -59,7 +60,7 @@ class ProPlanController extends AbstractController
   /**
   * @Route("/recent", name="pro_plan_index_recent", methods={"GET"})
   */
-  public function ordreRecent(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreRecent(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -70,7 +71,7 @@ class ProPlanController extends AbstractController
 
     return $this->render('professionnel/plan/index.html.twig', [
       'plans' => $planRepository->findByIdBienRecent($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -78,7 +79,7 @@ class ProPlanController extends AbstractController
   /**
   * @Route("/ancien", name="pro_plan_index_ancien", methods={"GET"})
   */
-  public function ordreAncien(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreAncien(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -89,7 +90,7 @@ class ProPlanController extends AbstractController
 
     return $this->render('professionnel/plan/index.html.twig', [
       'plans' => $planRepository->findByIdBienAncien($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -97,7 +98,7 @@ class ProPlanController extends AbstractController
   /**
   * @Route("/show/{id}", name="pro_plan_show", methods={"GET"})
   */
-  public function show(Plan $plan, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function show(Plan $plan, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -108,7 +109,7 @@ class ProPlanController extends AbstractController
 
     return $this->render('professionnel/plan/show.html.twig', [
       'plan' => $plan,
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }

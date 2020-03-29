@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
 * @Route("/pro/{idBien}/intervention")
@@ -21,7 +22,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/", name="pro_intervention_index", methods={"GET"})
   */
-  public function index(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function index(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -32,7 +33,7 @@ class ProInterventionController extends AbstractController
 
     return $this->render('professionnel/intervention/index.html.twig', [
       'interventions' => $interventionRepository->findByIdBien($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -40,7 +41,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/desalphabetique", name="pro_intervention_index_desalpha", methods={"GET"})
   */
-  public function ordreDesalphabetique(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreDesalphabetique(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -51,7 +52,7 @@ class ProInterventionController extends AbstractController
 
     return $this->render('professionnel/intervention/index.html.twig', [
       'interventions' => $interventionRepository->findByIdBienOrdreDesalphabetique($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -59,7 +60,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/recent", name="pro_intervention_index_recent", methods={"GET"})
   */
-  public function ordreRecent(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreRecent(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -70,7 +71,7 @@ class ProInterventionController extends AbstractController
 
     return $this->render('professionnel/intervention/index.html.twig', [
       'interventions' => $interventionRepository->findByIdBienRecent($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -78,7 +79,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/ancien", name="pro_intervention_index_ancien", methods={"GET"})
   */
-  public function ordreAncien(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreAncien(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -89,7 +90,7 @@ class ProInterventionController extends AbstractController
 
     return $this->render('professionnel/intervention/index.html.twig', [
       'interventions' => $interventionRepository->findByIdBienAncien($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -97,7 +98,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/new", name="pro_intervention_new", methods={"GET","POST"})
   */
-  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository): Response
+  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -122,7 +123,7 @@ class ProInterventionController extends AbstractController
     return $this->render('professionnel/intervention/new.html.twig', [
       'intervention' => $intervention,
       'bien'=> $bien,
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'form' => $form->createView(),
     ]);
   }
@@ -130,7 +131,7 @@ class ProInterventionController extends AbstractController
   /**
   * @Route("/show/{id}", name="pro_intervention_show", methods={"GET"})
   */
-  public function show(Intervention $intervention, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function show(Intervention $intervention, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -141,42 +142,42 @@ class ProInterventionController extends AbstractController
 
     return $this->render('professionnel/intervention/show.html.twig', [
       'intervention' => $intervention,
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
 
-  /**
-  * @Route("/{id}/edit", name="pro_intervention_edit", methods={"GET","POST"})
-  */
-  public function edit(Request $request, Intervention $intervention): Response
-  {
-    $form = $this->createForm(InterventionType::class, $intervention);
-    $form->handleRequest($request);
+  // /**
+  // * @Route("/{id}/edit", name="pro_intervention_edit", methods={"GET","POST"})
+  // */
+  // public function edit(Request $request, Intervention $intervention): Response
+  // {
+  //   $form = $this->createForm(InterventionType::class, $intervention);
+  //   $form->handleRequest($request);
+  //
+  //   if ($form->isSubmitted() && $form->isValid()) {
+  //     $this->getDoctrine()->getManager()->flush();
+  //
+  //     return $this->redirectToRoute('intervention_index');
+  //   }
+  //
+  //   return $this->render('professionnel/intervention/edit.html.twig', [
+  //     'intervention' => $intervention,
+  //     'form' => $form->createView(),
+  //   ]);
+  // }
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $this->getDoctrine()->getManager()->flush();
-
-      return $this->redirectToRoute('intervention_index');
-    }
-
-    return $this->render('professionnel/intervention/edit.html.twig', [
-      'intervention' => $intervention,
-      'form' => $form->createView(),
-    ]);
-  }
-
-  /**
-  * @Route("/{id}", name="pro_intervention_delete", methods={"DELETE"})
-  */
-  public function delete(Request $request, Intervention $intervention): Response
-  {
-    if ($this->isCsrfTokenValid('delete'.$intervention->getId(), $request->request->get('_token'))) {
-      $entityManager = $this->getDoctrine()->getManager();
-      $entityManager->remove($intervention);
-      $entityManager->flush();
-    }
-
-    return $this->redirectToRoute('pro_intervention_index');
-  }
+  // /**
+  // * @Route("/{id}", name="pro_intervention_delete", methods={"DELETE"})
+  // */
+  // public function delete(Request $request, Intervention $intervention): Response
+  // {
+  //   if ($this->isCsrfTokenValid('delete'.$intervention->getId(), $request->request->get('_token'))) {
+  //     $entityManager = $this->getDoctrine()->getManager();
+  //     $entityManager->remove($intervention);
+  //     $entityManager->flush();
+  //   }
+  //
+  //   return $this->redirectToRoute('pro_intervention_index');
+  // }
 }

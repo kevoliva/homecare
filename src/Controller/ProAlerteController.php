@@ -11,6 +11,7 @@ use App\Repository\BienRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -21,7 +22,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/", name="pro_alerte_index")
   */
-  public function index(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function index(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -32,7 +33,7 @@ class ProAlerteController extends AbstractController
 
     return $this->render('professionnel/alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBien($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -40,7 +41,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/desalphabetique", name="pro_alerte_index_desalpha")
   */
-  public function ordreDesalphabetique(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreDesalphabetique(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -51,7 +52,7 @@ class ProAlerteController extends AbstractController
 
     return $this->render('professionnel/alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBienOrdreDesalphabetique($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -59,7 +60,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/recent", name="pro_alerte_index_recent")
   */
-  public function ordreRecent(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreRecent(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -70,7 +71,7 @@ class ProAlerteController extends AbstractController
 
     return $this->render('professionnel/alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBienRecent($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -78,7 +79,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/ancien", name="pro_alerte_index_ancien")
   */
-  public function ordreAncien(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function ordreAncien(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -89,7 +90,7 @@ class ProAlerteController extends AbstractController
 
     return $this->render('professionnel/alerte/index.html.twig', [
       'alertes' => $alerteRepository->findByIdBienAncien($idBien),
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -97,7 +98,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/show/{id}", name="pro_alerte_show", methods={"GET"})
   */
-  public function show(Alerte $alerte, AutorisationRepository $autorisationRepository, $idBien): Response
+  public function show(Alerte $alerte, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -108,7 +109,7 @@ class ProAlerteController extends AbstractController
 
     return $this->render('professionnel/alerte/show.html.twig', [
       'alerte' => $alerte,
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'bien' => $bien
     ]);
   }
@@ -116,7 +117,7 @@ class ProAlerteController extends AbstractController
   /**
   * @Route("/new", name="pro_alerte_new", methods={"GET","POST"})
   */
-  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository): Response
+  public function new(Request $request, $idBien, AutorisationRepository $autorisationRepository, UserInterface $user): Response
   {
     // Récupérer le repository de l'entité Bien
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
@@ -141,7 +142,7 @@ class ProAlerteController extends AbstractController
     return $this->render('professionnel/alerte/new.html.twig', [
       'alerte' => $alerte,
       'bien'=> $bien,
-      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'autorisations' => $autorisationRepository->findByAutorisation($user, $bien),
       'form' => $form->createView(),
     ]);
   }
