@@ -22,20 +22,21 @@ Interventions
   </div>
 </div>
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-12">
     <center>
-      <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Filtrer</button>
-    </center>
-  </div>
+      <div class="dropdown show">
+        <a class="btn btn-outline-secondary btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Trier
+        </a>
 
-  <div class="col-md-8">
-    <center>
-      <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher..." />
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="{{path('pro_intervention_index_recent', {idBien:bien.id})}}">La plus récente</a>
+          <a class="dropdown-item" href="{{path('pro_intervention_index_ancien', {idBien:bien.id})}}">La plus ancienne</a>
+          <a class="dropdown-item" href="{{path('pro_intervention_index', {idBien:bien.id})}}">Alphabétique</a>
+          <a class="dropdown-item" href="{{path('pro_intervention_index_desalpha', {idBien:bien.id})}}">Désalphabétique</a>
+        </div>
+      </div>
     </center>
-  </div>
-
-  <div class="col-md-2">
-    <button type="button" class="btn btn-info btn-sm" style="margin-top: 7px">Trier</button>
   </div>
 </div>
 </br>

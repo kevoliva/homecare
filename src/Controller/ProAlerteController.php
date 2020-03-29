@@ -38,6 +38,63 @@ class ProAlerteController extends AbstractController
   }
 
   /**
+  * @Route("/desalphabetique", name="pro_alerte_index_desalpha")
+  */
+  public function ordreDesalphabetique(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
+    return $this->render('professionnel/alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienOrdreDesalphabetique($idBien),
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/recent", name="pro_alerte_index_recent")
+  */
+  public function ordreRecent(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
+    return $this->render('professionnel/alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienRecent($idBien),
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/ancien", name="pro_alerte_index_ancien")
+  */
+  public function ordreAncien(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW_PRO', $bien);
+
+    return $this->render('professionnel/alerte/index.html.twig', [
+      'alertes' => $alerteRepository->findByIdBienAncien($idBien),
+      'autorisations' => $autorisationRepository->findByIdBien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/show/{id}", name="pro_alerte_show", methods={"GET"})
   */
   public function show(Alerte $alerte, AutorisationRepository $autorisationRepository, $idBien): Response
