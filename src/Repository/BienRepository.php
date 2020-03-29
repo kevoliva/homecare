@@ -57,6 +57,8 @@ public function getBiensClients($proConnecte)
   ->join('a.professionnel', 'p')
   ->andWhere('a.professionnel = :proConnecte')
   ->setParameter('proConnecte', $proConnecte)
+  ->join('b.proprietaire', 'proprietaire')
+  ->orderBy('proprietaire.nom', 'ASC')
   ->getQuery()
   ->getResult();
 }
