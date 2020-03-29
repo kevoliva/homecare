@@ -58,6 +58,43 @@ class FactureRepository extends ServiceEntityRepository
             ->join('f.bien', 'b')
             ->andWhere('b.id = :idBien')
             ->setParameter('idBien', $idBien)
+            ->orderBy('f.libelle', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByIdBienOrdreDesalphabetique($idBien)
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('f.libelle', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByIdBienRecent($idBien)
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('f.laDate', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByIdBienAncien($idBien)
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.bien', 'b')
+            ->andWhere('b.id = :idBien')
+            ->setParameter('idBien', $idBien)
+            ->orderBy('f.laDate', 'ASC')
             ->getQuery()
             ->getResult()
         ;

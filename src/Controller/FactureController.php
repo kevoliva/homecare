@@ -40,6 +40,63 @@ class FactureController extends AbstractController
   }
 
   /**
+  * @Route("/desalphabetique", name="facture_index_desalpha", methods={"GET"})
+  */
+  public function ordreDesalphabetique(FactureRepository $factureRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    // Envoyer les biens récupérés à la vue chargée de les afficher
+    return $this->render('facture/index.html.twig', [
+      'factures' => $factureRepository->findByIdBienOrdreDesalphabetique($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/recent", name="facture_index_recent", methods={"GET"})
+  */
+  public function ordreRecent(FactureRepository $factureRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    // Envoyer les biens récupérés à la vue chargée de les afficher
+    return $this->render('facture/index.html.twig', [
+      'factures' => $factureRepository->findByIdBienRecent($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
+  * @Route("/ancien", name="facture_index_ancien", methods={"GET"})
+  */
+  public function ordreAncien(FactureRepository $factureRepository, $idBien): Response
+  {
+    // Récupérer le repository de l'entité Bien
+    $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
+    // Récupérer les biens enregistrés en BD
+    $bien = $repositoryBien->find($idBien);
+
+    $this->denyAccessUnlessGranted('VIEW', $bien);
+
+    // Envoyer les biens récupérés à la vue chargée de les afficher
+    return $this->render('facture/index.html.twig', [
+      'factures' => $factureRepository->findByIdBienAncien($idBien),
+      'bien' => $bien
+    ]);
+  }
+
+  /**
   * @Route("/new", name="facture_new", methods={"GET","POST"})
   */
   public function new(Request $request, $idBien): Response
