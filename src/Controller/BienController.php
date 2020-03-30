@@ -44,6 +44,7 @@ class BienController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
 
+      $bien->setAdresse(strtolower($bien->getAdresse()));
       $bien->setVille(ucfirst(strtolower($bien->getVille())));
       $bien->setProprietaire($user);
       $entityManager = $this->getDoctrine()->getManager();
@@ -77,6 +78,9 @@ class BienController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+
+      $bien->setAdresse(strtolower($bien->getAdresse()));
+
       $this->getDoctrine()->getManager()->flush();
 
       return $this->redirectToRoute('bien_index');
