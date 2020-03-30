@@ -37,7 +37,7 @@ class AutorisationController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="autorisation_index_desalpha", methods={"GET"})
+  * @Route("/za", name="autorisation_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(AutorisationRepository $autorisationRepository, $idBien): Response
   {

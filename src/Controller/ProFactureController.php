@@ -39,7 +39,7 @@ class ProFactureController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="pro_facture_index_desalpha", methods={"GET"})
+  * @Route("/za", name="pro_facture_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(FactureRepository $factureRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {

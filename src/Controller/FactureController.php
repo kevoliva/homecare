@@ -40,7 +40,7 @@ class FactureController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="facture_index_desalpha", methods={"GET"})
+  * @Route("/za", name="facture_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(FactureRepository $factureRepository, $idBien): Response
   {

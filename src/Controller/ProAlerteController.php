@@ -39,7 +39,7 @@ class ProAlerteController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="pro_alerte_index_desalpha")
+  * @Route("/za", name="pro_alerte_index_desalpha")
   */
   public function ordreDesalphabetique(AlerteRepository $alerteRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {

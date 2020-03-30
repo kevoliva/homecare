@@ -39,7 +39,7 @@ class ProPlanController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="pro_plan_index_desalpha", methods={"GET"})
+  * @Route("/za", name="pro_plan_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(PlanRepository $planRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {

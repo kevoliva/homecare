@@ -36,7 +36,7 @@ class InterventionController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="intervention_index_desalpha", methods={"GET"})
+  * @Route("/za", name="intervention_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(InterventionRepository $interventionRepository, $idBien): Response
   {

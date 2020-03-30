@@ -36,7 +36,7 @@ class AlerteController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="alerte_index_desalpha", methods={"GET"})
+  * @Route("/za", name="alerte_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(AlerteRepository $alerteRepository, $idBien): Response
   {

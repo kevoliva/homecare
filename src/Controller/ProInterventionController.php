@@ -39,7 +39,7 @@ class ProInterventionController extends AbstractController
   }
 
   /**
-  * @Route("/desalphabetique", name="pro_intervention_index_desalpha", methods={"GET"})
+  * @Route("/za", name="pro_intervention_index_desalpha", methods={"GET"})
   */
   public function ordreDesalphabetique(InterventionRepository $interventionRepository, AutorisationRepository $autorisationRepository, $idBien, UserInterface $user): Response
   {
