@@ -57,7 +57,6 @@ public function entreprisesOrdreAlpha($id){
   -> orWhere('a.bien is NULL')
   -> setParameter ('bien', $id)
   -> orderBy ('p.nomEntrep', 'ASC');
-  dump($resultats);
   return $resultats;
 }
 

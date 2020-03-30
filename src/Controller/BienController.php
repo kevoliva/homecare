@@ -44,6 +44,7 @@ class BienController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
 
+      $bien->setVille(ucfirst(strtolower($bien->getVille())));
       $bien->setProprietaire($user);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($bien);
@@ -69,7 +70,7 @@ class BienController extends AbstractController
     $repositoryBien = $this->getDoctrine()->getRepository(Bien::class);
     // Récupérer les biens enregistrés en BD
     $bien = $repositoryBien->find($idBien);
-    
+
     $this->denyAccessUnlessGranted('VIEW', $bien);
 
     $form = $this->createForm(BienType::class, $bien);
