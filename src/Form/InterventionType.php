@@ -43,7 +43,7 @@ class InterventionType extends AbstractType
 
     ->add('remarque', TextareaType::class, [
       'attr' => [
-        'placeholder' => 'Remarques ou conseils à ajouter... (facultatif)',
+        'placeholder' => 'Remarques ou conseils à ajouter...',
         'rows' => 6,
       ],
       'label' => 'Remarques',
